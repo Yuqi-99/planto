@@ -1,11 +1,64 @@
 /** @type {import('tailwindcss').Config} */
 
-const plugin = require("tailwindcss/plugin");
+const plugin = require('tailwindcss/plugin');
+
+function half(value) {
+	return value.replace(/\d+(.\d+)?/, (number) => number / 2);
+}
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+	theme: {
+		extend: {
+			colors: {
+				mainBgColor: '#192116',
+				headerBgColor: '#192116',
+				footerBgColor: '#212C1C',
+				'green-300': '#4D504CFF',
+				'green-400': '#3C433A',
+				'grey-300': '#C6C8C6',
+				'grey-600': '#959595FF',
+			},
+			backgroundImage: {
+				// 'topiary-green-pot':
+				// 	"url('https://breath-natural-nextjs-chronicles.netlify.app/_next/static/media/topiary-green-pot.3f6d856c.webp')",
+				'topiary-green-pot': "url('../public/background-plant.png')",
+				'gradient-border': 'linear-gradient(to right, #3C433A, #FFFFFF)',
+			},
+		},
+	},
+	plugins: [
+		require('tailwindcss-touch')(),
+		plugin(({ addUtilities, e, theme, variants }) => {
+			Object.entries(theme('gap')).forEach(([key, value]) =>
+				addUtilities(
+					{
+						[`.flex-gap-${e(key)}`]: {
+							margin: `-${half(value)}`,
+							'& > *': {
+								margin: half(value),
+							},
+						},
+						[`.flex-gap-x-${e(key)}`]: {
+							marginRight: `-${half(value)}`,
+							marginLeft: `-${half(value)}`,
+							'& > *': {
+								marginRight: half(value),
+								marginLeft: half(value),
+							},
+						},
+						[`.flex-gap-y-${e(key)}`]: {
+							marginTop: `-${half(value)}`,
+							marginBottom: `-${half(value)}`,
+							'& > *': {
+								marginTop: half(value),
+								marginBottom: half(value),
+							},
+						},
+					},
+					variants('gap')
+				)
+			);
+		}),
+	],
 };

@@ -1,35 +1,27 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+	createBrowserRouter,
+	createRoutesFromElements,
+	Route,
+	RouterProvider,
+} from 'react-router-dom';
+import { NotFoundPage } from './modules/errors/NotFoundPage';
+import { HomePage } from './modules/home/HomePage';
+import { ROUTES } from './shared/constants/routes';
+import { RootLayout } from './shared/layouts/RootLayout';
 
-function App() {
-  const [count, setCount] = useState(0);
+const routes = createRoutesFromElements(
+	<Route errorElement={<NotFoundPage />}>
+		<Route path='/' element={<RootLayout />}>
+			<Route path={ROUTES.home.path} element={<HomePage />} />
+		</Route>
+	</Route>
+);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="text-red-500">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
-}
+const router = createBrowserRouter(routes, {
+	future: { v7_normalizeFormMethod: true } as any,
+});
 
-export default App;
+export const App = () => {
+	return <RouterProvider router={router} />;
+};

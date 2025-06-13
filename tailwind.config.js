@@ -14,6 +14,7 @@ export default {
 				mainBgColor: '#192116',
 				headerBgColor: '#192116',
 				footerBgColor: '#212C1C',
+				"green-200": '#63A765',
 				'green-300': '#4D504CFF',
 				'green-400': '#3C433A',
 				'grey-300': '#C6C8C6',

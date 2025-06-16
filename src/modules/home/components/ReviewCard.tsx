@@ -9,7 +9,7 @@ type TReviewCard = {
 
 export const ReviewCard = ({ img, name, comment }: TReviewCard) => {
 	return (
-		<div className='w-full rounded-[36px] border-2 border-solid border-green-300 p-6 backdrop-blur-sm md:w-fit'>
+		<div className='w-full rounded-[36px] border-2 border-solid border-green-300 p-6 backdrop-blur-sm md:w-fit md:max-w-[400px]'>
 			<div className='flex items-center'>
 				{img ? (
 					<img src={img} alt={name} className='h-10 w-10 rounded-full' />

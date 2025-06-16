@@ -6,7 +6,7 @@ export const CustomerReview = () => {
 		<div className='flex w-full flex-col items-center justify-center px-6'>
 			<SectionTitle title='Customer Review' />
 
-			<div className='mt-20 grid w-full grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-3 md:gap-y-20'>
+			<div className='mt-20 grid w-full grid-cols-1 place-items-center gap-x-4 gap-y-6 md:grid-cols-3 md:gap-y-20'>
 				<ReviewCard
 					img='../avatar/avatar1.png'
 					name='Maln Josi'

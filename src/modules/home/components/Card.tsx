@@ -16,7 +16,7 @@ export const Card = ({ category, id, img, name, showPrice = false, price, height
 	return (
 		<div
 			className={cn(
-				'h-[300px] w-[240px] rounded-[36px] border-2 border-solid border-green-300 p-2 backdrop-blur-md lg:h-[380px] lg:w-[320px] lg:p-6'
+				'h-[300px] w-[250px] rounded-[36px] border-2 border-solid border-green-300 p-2 backdrop-blur-md sm:h-[300px] sm:w-[240px] lg:h-[380px] lg:w-[320px] lg:p-6'
 			)}
 		>
 			<div className='flex h-full flex-col'>

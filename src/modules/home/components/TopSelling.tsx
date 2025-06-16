@@ -7,7 +7,7 @@ export const TopSelling = () => {
 		<div className='flex w-full flex-col items-center justify-center'>
 			<SectionTitle title='Our Top Selling' />
 
-			<div className='mt-20 grid w-full grid-cols-3 gap-x-4 gap-y-20'>
+			<div className='mt-20 grid gap-x-4 gap-y-20 sm:grid-cols-2 md:grid-cols-3'>
 				{TOP_SELLING_DATA?.map((card: TCard) => {
 					return (
 						<Card

@@ -23,3 +23,47 @@
 	font-weight: 400;
 	font-style: normal;
 }
+
+.swiper-container {
+	overflow: visible !important;
+}
+
+.swiper-slide-visible img {
+	overflow: visible;
+}
+
+.swiper-pagination {
+	position: absolute;
+	width: 100% !important;
+	bottom: 60px !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+	width: 5px !important;
+	height: 5px !important;
+	opacity: 100% !important;
+	border-radius: 100px !important;
+	background-color: #c6c8c6 !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+	width: 16px !important;
+	height: 5px !important;
+	opacity: 100% !important;
+	border-radius: 100px !important;
+	background-color: #c6c8c6 !important;
+}
+
+.embla {
+	overflow: hidden;
+}
+
+.embla__container {
+	display: flex;
+}
+
+.embla__slide {
+	flex: 0 0 100%;
+	min-width: 0;
+	overflow: visible !important;
+}

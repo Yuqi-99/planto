@@ -3,7 +3,7 @@ import { ReviewCard } from './ReviewCard';
 export const ReviewSection = () => {
 	return (
 		<div className='px-6'>
-			<div className='mt-36'>
+			<div className='mt-20 md:mt-36'>
 				<ReviewCard
 					img=''
 					name='Alina Patel'

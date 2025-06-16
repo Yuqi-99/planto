@@ -7,29 +7,28 @@ export const Footer = () => {
 
 	return (
 		<div className='flex min-h-56 w-full justify-center bg-footerBgColor p-8'>
-			<div className='flex w-full max-w-[1440px] items-center justify-between flex-gap-x-4'>
-				<div className='flex w-1/3 flex-col'>
+			<div className='flex w-full max-w-[1440px] flex-col items-center justify-between flex-gap-x-4 sm:flex-row'>
+				<div className='flex w-full flex-col sm:w-1/3'>
 					<div
 						className='flex cursor-pointer items-center flex-gap-x-2'
 						onClick={() => navigate(ROUTES.home.path)}
 					>
 						<PlantoLogo className='size-12' />
-						<p className='text-2xl font-bold text-white'>Planto.</p>
+						<p className='text-2xl font-bold text-grey-300'>Planto.</p>
 					</div>
-					<p className='mt-6 text-sm font-normal text-white'>
-						Discover the perfect plants for your space at Planto. While major retailers like Home
-						Depot, Lowe's, and Walmart offer basic plant selections, we provide expertly curated
-						indoor and outdoor plants with specialized care guides and sustainable gardening
-						solutions that go beyond what you'll find at typical garden centers. Our premium
-						collection and personalized service make us your ideal alternative to big-box stores.
+					<p className='mt-6 text-xs font-light text-white'>
+						Welcome to Planto – Your Trusted Destination for Beautiful, Healthy Plants. We offer a
+						wide variety of indoor and outdoor plants, carefully curated to bring life and freshness
+						to your home or workspace. Whether you're a beginner or a plant enthusiast, Planto is
+						here to help you grow.
 					</p>
 				</div>
 
-				<div className='flex w-1/5 flex-col'>
-					<div className='mb-6 flex items-center flex-gap-x-2'>
+				<div className='flex w-full flex-col sm:h-[132px] sm:w-1/5'>
+					<div className='mb-4 mt-10 flex items-center flex-gap-x-2 sm:mb-6'>
 						<p className='text-sm font-bold text-white'>Quick Link's</p>
 					</div>
-					<div className='flex h-1/2 flex-col justify-between'>
+					<div className='flex flex-col justify-between flex-gap-y-2'>
 						<p className='text-xs font-normal text-white'>Home</p>
 						<p className='text-xs font-normal text-white'>Type's Of plant's</p>
 						<p className='text-xs font-normal text-white'>Contact</p>
@@ -37,8 +36,8 @@ export const Footer = () => {
 					</div>
 				</div>
 
-				<div className='flex w-1/3 flex-col justify-between'>
-					<div className='mb-6 flex flex-col justify-center flex-gap-x-2'>
+				<div className='flex w-full flex-col justify-between sm:h-[132px] sm:w-1/3'>
+					<div className='mb-4 mt-10 flex flex-col justify-center flex-gap-x-2 sm:mb-6'>
 						<p className='text-sm font-bold text-white'>For Every Update.</p>
 					</div>
 					<p className='text-sm font-bold text-white'>Enter your email</p>

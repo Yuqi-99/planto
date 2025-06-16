@@ -38,13 +38,13 @@ export const HomePage = () => {
 					/>
 				</div>
 			</div>
-			<div className='max-w-[1440px]'>
+			<div className='flex w-full max-w-[1440px]'>
 				<TopSelling />
 			</div>
-			<div className='mt-20 max-w-[1440px]'>
+			<div className='mt-20 w-full max-w-[1440px]'>
 				<CustomerReview />
 			</div>
-			<div className='mt-20 max-w-[1440px]'>
+			<div className='mt-20 w-full max-w-[1440px]'>
 				<OurBestSection />
 			</div>
 		</div>

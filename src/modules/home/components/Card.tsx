@@ -8,22 +8,37 @@ export type TCard = {
 	name: string;
 	showPrice?: boolean;
 	price?: number;
-	height?: string;
+	imgClassName?: string;
+	showBgColor?: boolean;
 };
 
-export const Card = ({ category, id, img, name, showPrice = false, price, height }: TCard) => {
+export const Card = ({
+	category,
+	id,
+	img,
+	name,
+	showPrice = false,
+	price,
+	imgClassName,
+	showBgColor = true,
+}: TCard) => {
 	console.log(id, 'id');
 	return (
 		<div
 			className={cn(
-				'h-[300px] w-[250px] rounded-[36px] border-2 border-solid border-green-300 p-2 backdrop-blur-md sm:h-[300px] sm:w-[240px] lg:h-[380px] lg:w-[320px] lg:p-6'
+				'h-fit w-[250px] rounded-[36px] border-2 border-solid border-green-300 p-2 backdrop-blur-md sm:w-[240px] lg:w-[320px] lg:p-6',
+				showBgColor && 'bg-green-700'
 			)}
 		>
 			<div className='flex h-full flex-col'>
-				<img src={img} alt={name} className={cn('-mt-20 lg:-mt-24', height)} />
+				<div className='flex justify-center'>
+					<img src={img} alt={name} className={cn('-mt-20 lg:-mt-24', imgClassName)} />
+				</div>
 				<div className='mt-6 flex flex-col px-6'>
 					<p className='text-xs font-extralight text-grey-300'>{category}</p>
-					<p className='mt-3 text-xl font-light text-grey-300'>{name}</p>
+					<p className='mt-3 line-clamp-1 text-xl font-light text-grey-300' title={name}>
+						{name}
+					</p>
 					{!showPrice && (
 						<button
 							type='button'

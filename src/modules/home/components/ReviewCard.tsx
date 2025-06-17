@@ -1,15 +1,22 @@
 import PlantoIcon from '../../../shared/assets/planto-logo.svg?react';
+import { cn } from '../../../shared/utils/cn';
 import { Rating } from './Rating';
 
 type TReviewCard = {
 	img?: string;
 	name: string;
 	comment: string;
+	showBgColor?: boolean;
 };
 
-export const ReviewCard = ({ img, name, comment }: TReviewCard) => {
+export const ReviewCard = ({ img, name, comment, showBgColor = true }: TReviewCard) => {
 	return (
-		<div className='w-full rounded-[36px] border-2 border-solid border-green-300 p-6 backdrop-blur-sm md:w-fit md:max-w-[400px]'>
+		<div
+			className={cn(
+				'w-full rounded-[36px] border-2 border-solid border-green-300 p-6 backdrop-blur-sm md:w-fit md:max-w-[400px]',
+				showBgColor && 'bg-green-700'
+			)}
+		>
 			<div className='flex items-center'>
 				{img ? (
 					<img src={img} alt={name} className='h-10 w-10 rounded-full' />

@@ -14,11 +14,14 @@ export default {
 				mainBgColor: '#192116',
 				headerBgColor: '#192116',
 				footerBgColor: '#212C1C',
+				'green-100': '#BCFFBEFF',
 				'green-200': '#63A765',
 				'green-300': '#4D504CFF',
 				'green-400': '#3C433A',
+				'green-700': '#252E22',
 				'grey-300': '#C6C8C6',
 				'grey-600': '#020202FF',
+				'darkGrey-darker': '#101010',
 			},
 			backgroundImage: {
 				// 'topiary-green-pot':
@@ -31,6 +34,9 @@ export default {
 				sm: '641px',
 				md: '769px',
 				lg: '1025px',
+			},
+			zIndex: {
+				menuSelection: 1000,
 			},
 		},
 	},

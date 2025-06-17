@@ -12,6 +12,7 @@ export const ReviewSection = () => {
 					the final product, which met our expectations. Their ability to deliver a high-quality
 					product efficiently was impressive, and we would consider working with them again in the
 					future.'
+					showBgColor={false}
 				/>
 			</div>
 		</div>

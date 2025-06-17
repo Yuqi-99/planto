@@ -14,6 +14,7 @@ export const CardSwiper = () => {
 							category={card.category}
 							img={card.img}
 							name={card.name}
+							showBgColor={false}
 						/>
 					);
 				})}

@@ -7,13 +7,17 @@ import {
 } from 'react-router-dom';
 import { NotFoundPage } from './modules/errors/NotFoundPage';
 import { HomePage } from './modules/home/HomePage';
+import { AllPlantsPage } from './modules/products/AllPlantsPage';
 import { ROUTES } from './shared/constants/routes';
 import { RootLayout } from './shared/layouts/RootLayout';
+import { PotsAndAccessories } from './modules/products/PotsAndAccessories';
 
 const routes = createRoutesFromElements(
 	<Route errorElement={<NotFoundPage />}>
 		<Route path='/' element={<RootLayout />}>
 			<Route path={ROUTES.home.path} element={<HomePage />} />
+			<Route path={ROUTES.allPlants.path} element={<AllPlantsPage />} />
+			<Route path={ROUTES.potsAccessories.path} element={<PotsAndAccessories />} />
 		</Route>
 	</Route>
 );

@@ -18,7 +18,7 @@ export const TopSelling = () => {
 							img={card.img}
 							name={card.name}
 							price={card.price}
-							height={'h-[230px] lg:h-[290px]'}
+							imgClassName={'h-[230px] lg:h-[290px]'}
 						/>
 					);
 				})}

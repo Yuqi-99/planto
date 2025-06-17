@@ -9,6 +9,7 @@ type LongCardProps = {
 	price?: number;
 	buttonTitle: string;
 	showAddToCart?: boolean;
+	showBgColor?: boolean;
 };
 
 export const LongCard = ({
@@ -20,10 +21,16 @@ export const LongCard = ({
 	subtitle,
 	buttonTitle,
 	showAddToCart = true,
+	showBgColor = true,
 }: LongCardProps) => {
 	return (
 		<div className='mb-20 w-full px-6'>
-			<div className='w-full rounded-[72px] border-2 border-solid border-green-300 px-2 backdrop-blur-md'>
+			<div
+				className={cn(
+					'w-full rounded-[72px] border-2 border-solid border-green-300 px-2 backdrop-blur-md',
+					showBgColor && 'bg-green-700'
+				)}
+			>
 				<div
 					className={cn(
 						'flex w-full flex-col items-center sm:flex-row',

@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import PlayIcon from '../../../shared/assets/play-icon.svg?react';
+import { ROUTES } from '../../../shared/constants/routes';
 
 export const HomeTextSection = () => {
+	const navigate = useNavigate();
 	return (
 		<div className='w-full px-6 pt-8 md:w-3/5'>
 			<p className='text-6xl font-semibold text-grey-300'>Breath Natural</p>
@@ -19,7 +22,13 @@ export const HomeTextSection = () => {
 					<p className='text-sm font-bold text-grey-300 sm:font-light'>Explore</p>
 				</button>
 
-				<button type='button' className='flex items-center'>
+				<button
+					type='button'
+					className='flex items-center'
+					onClick={() => {
+						navigate(ROUTES.iframe.path);
+					}}
+				>
 					<div className='flex items-center justify-center rounded-full border border-solid border-grey-300 p-3'>
 						<PlayIcon className='size-4 text-white' />
 					</div>

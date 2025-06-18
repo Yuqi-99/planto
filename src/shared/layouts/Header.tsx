@@ -7,44 +7,12 @@ import { ROUTES } from '../constants/routes';
 import { useEffect, useRef, useState } from 'react';
 import { Drawer } from '../components/Drawer';
 import { cn } from '../utils/cn';
-
-type TShopSelection = {
-	dropdownRef: React.RefObject<HTMLDivElement | null>;
-	setOpenSelection: (openSelection: boolean) => void;
-};
-
-const ShopSelection = ({ dropdownRef, setOpenSelection }: TShopSelection) => {
-	const navigate = useNavigate();
-	return (
-		<div
-			className='z-menuSelection w-full rounded-lg border border-solid border-green-400 bg-grey-600 p-2 text-center md:absolute md:w-1/2 md:translate-x-1/2 md:text-left'
-			ref={dropdownRef}
-		>
-			<p
-				className='hover:text-darkGrey-darker cursor-pointer rounded-lg p-2 text-sm font-light text-white hover:bg-grey-300'
-				onClick={() => {
-					navigate(ROUTES.allPlants.path);
-					setOpenSelection(false);
-				}}
-			>
-				All Plants
-			</p>
-			<p
-				className='hover:text-darkGrey-darker cursor-pointer rounded-lg p-2 text-sm font-light text-white hover:bg-grey-300'
-				onClick={() => {
-					navigate(ROUTES.potsAccessories.path);
-					setOpenSelection(false);
-				}}
-			>
-				Pots and Accessories
-			</p>
-		</div>
-	);
-};
+import { ShopSelection } from './components/ShopSelection';
 
 export const Header = () => {
 	const navigate = useNavigate();
 	const dropdownRef = useRef<HTMLDivElement>(null);
+	const shopButtonRef = useRef<HTMLDivElement>(null);
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const [openSelection, setOpenSelection] = useState(false);
 	const [openDrawerSelection, setOpenDrawerSelection] = useState(false);
@@ -54,11 +22,14 @@ export const Header = () => {
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
-				openSelection &&
+				(openSelection || openDrawerSelection) &&
 				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Node)
+				!dropdownRef.current.contains(event.target as Node) &&
+				shopButtonRef.current &&
+				!shopButtonRef.current.contains(event.target as Node)
 			) {
 				setOpenSelection(false);
+				setOpenDrawerSelection(false);
 			}
 		};
 
@@ -66,7 +37,7 @@ export const Header = () => {
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [openSelection]);
+	}, [openSelection, openDrawerSelection]);
 
 	return (
 		<>
@@ -85,8 +56,11 @@ export const Header = () => {
 							Home
 						</p>
 						<p
+							ref={shopButtonRef}
 							className={cn(navCss, openSelection && 'after:w-full')}
-							onClick={() => setOpenSelection(!openSelection)}
+							onClick={() => {
+								setOpenSelection(!openSelection);
+							}}
 						>
 							Shop
 						</p>
@@ -110,11 +84,19 @@ export const Header = () => {
 					<p className={navCss} onClick={() => navigate(ROUTES.home.path)}>
 						Home
 					</p>
-					<p className={navCss} onClick={() => setOpenDrawerSelection(!openDrawerSelection)}>
+					<p
+						ref={shopButtonRef}
+						className={navCss}
+						onClick={() => setOpenDrawerSelection(!openDrawerSelection)}
+					>
 						Shop
 					</p>
 					{openDrawerSelection && (
-						<ShopSelection dropdownRef={dropdownRef} setOpenSelection={setOpenDrawerSelection} />
+						<ShopSelection
+							dropdownRef={dropdownRef}
+							setOpenSelection={setOpenDrawerSelection}
+							onClick={() => setOpenDrawer(false)}
+						/>
 					)}
 					<p className={navCss}>More</p>
 					<p className={navCss}>Contact Us</p>

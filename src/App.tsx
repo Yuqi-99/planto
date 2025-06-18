@@ -11,6 +11,7 @@ import { AllPlantsPage } from './modules/products/AllPlantsPage';
 import { ROUTES } from './shared/constants/routes';
 import { RootLayout } from './shared/layouts/RootLayout';
 import { PotsAndAccessories } from './modules/products/PotsAndAccessories';
+import { IframePage } from './modules/home/IframePage';
 
 const routes = createRoutesFromElements(
 	<Route errorElement={<NotFoundPage />}>
@@ -18,6 +19,7 @@ const routes = createRoutesFromElements(
 			<Route path={ROUTES.home.path} element={<HomePage />} />
 			<Route path={ROUTES.allPlants.path} element={<AllPlantsPage />} />
 			<Route path={ROUTES.potsAccessories.path} element={<PotsAndAccessories />} />
+			<Route path={ROUTES.iframe.path} element={<IframePage />} />
 		</Route>
 	</Route>
 );

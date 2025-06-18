@@ -13,7 +13,4 @@ export const ROUTES: Record<TRouteKey, TRoute> = {
 	contactUs: {
 		path: '/contact-us',
 	},
-	iframe: {
-		path: '/iframe',
-	},
 };

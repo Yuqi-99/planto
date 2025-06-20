@@ -42,7 +42,7 @@ export const LongCard = ({
 						alt={name}
 						className={cn(
 							showAddToCart
-								? '-mt-14 h-[300px] w-[300px] sm:-mt-14 sm:h-[280px] md:-mt-28 md:h-[350px]'
+								? '-mt-14 h-[200px] w-[200px] sm:-mt-14 sm:h-[280px] md:-mt-28 md:h-[350px]'
 								: // : '-mt-20 h-[280px] sm:-mt-28 sm:h-[400px] lg:-mt-36 lg:h-[500px]'
 									'h-[280px] sm:h-[400px] lg:h-[500px]'
 						)}
@@ -50,11 +50,11 @@ export const LongCard = ({
 					{/* Details */}
 					<div
 						className={cn(
-							'flex flex-col justify-center px-8 sm:py-8',
+							'flex flex-col justify-center px-4 sm:px-8 sm:py-8',
 							showAddToCart ? 'pb-8' : 'py-8'
 						)}
 					>
-						<p className='text-xl text-white'>{name}</p>
+						<p className='text-sm text-white sm:text-base md:text-xl'>{name}</p>
 						<p className='my-2 text-white'>{category}</p>
 						<p
 							className={cn(

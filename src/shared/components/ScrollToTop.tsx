@@ -30,12 +30,12 @@ export const ScrollToTop = () => {
 		<div className='mx-auto flex max-w-[1440px] items-center justify-center pr-2'>
 			{showBtn && (
 				<div
-					className='fixed bottom-8 right-4 z-10 flex size-20 cursor-pointer items-center justify-center rounded-full bg-green-400 text-3xl text-white opacity-50 hover:opacity-100'
+					className='fixed bottom-8 right-4 z-10 flex size-16 cursor-pointer items-center justify-center rounded-full bg-green-400 text-3xl text-white opacity-50 hover:opacity-100'
 					onClickCapture={() => {
 						goToTop();
 					}}
 				>
-					<FaArrowUpLong id='scroll-to-top-button' className='size-10' />
+					<FaArrowUpLong id='scroll-to-top-button' className='size-8' />
 				</div>
 			)}
 		</div>

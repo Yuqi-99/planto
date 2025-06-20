@@ -1,43 +1,35 @@
-import PlantoLogo from '../assets/planto-logo.svg?react';
-import SearchIcon from '../assets/search-icon.svg?react';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CartIcon from '../assets/cart-icon.svg?react';
 import MenuIcon from '../assets/menu-icon.svg?react';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../constants/routes';
-import { useEffect, useRef, useState } from 'react';
+import PlantoLogo from '../assets/planto-logo.svg?react';
+import SearchIcon from '../assets/search-icon.svg?react';
 import { Drawer } from '../components/Drawer';
+import { ROUTES } from '../constants/routes';
+import { useClickOutside } from '../hook/useClickOutside';
 import { cn } from '../utils/cn';
-import { ShopSelection } from './components/ShopSelection';
-
+import { DropdownSelection } from './components/DropdownSelection';
+import { DropdownItem } from './components/DropdownItem';
+import { CONTACT_US_DROPDOWN, SHOP_DROPDOWN } from '../constants/dropdownData';
 export const Header = () => {
 	const navigate = useNavigate();
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const shopButtonRef = useRef<HTMLDivElement>(null);
+	const contactDropdownRef = useRef<HTMLDivElement>(null);
+	const contactButtonRef = useRef<HTMLDivElement>(null);
 	const [openDrawer, setOpenDrawer] = useState(false);
-	const [openSelection, setOpenSelection] = useState(false);
-	const [openDrawerSelection, setOpenDrawerSelection] = useState(false);
+	const [activeDropdown, setActiveDropdown] = useState<null | 'shop' | 'contact'>(null);
+
 	const navCss =
-		'relative inline-block py-2 text-base md:text-sm font-extralight text-white after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-700 after:transition-all after:duration-300 hover:after:w-full cursor-pointer';
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				(openSelection || openDrawerSelection) &&
-				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Node) &&
-				shopButtonRef.current &&
-				!shopButtonRef.current.contains(event.target as Node)
-			) {
-				setOpenSelection(false);
-				setOpenDrawerSelection(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [openSelection, openDrawerSelection]);
+		'relative inline-block py-2 text-base md:text-sm font-extralight text-white after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer';
+	const handleNavigate = (path: string) => {
+		navigate(path);
+		setOpenDrawer(false);
+		setActiveDropdown(null);
+	};
+	useClickOutside([dropdownRef, shopButtonRef, contactDropdownRef, contactButtonRef], () => {
+		setActiveDropdown(null);
+	});
 
 	return (
 		<>
@@ -57,15 +49,19 @@ export const Header = () => {
 						</p>
 						<p
 							ref={shopButtonRef}
-							className={cn(navCss, openSelection && 'after:w-full')}
-							onClick={() => {
-								setOpenSelection(!openSelection);
-							}}
+							className={cn(navCss, activeDropdown === 'shop' && 'after:w-full')}
+							onClick={() => setActiveDropdown((prev) => (prev === 'shop' ? null : 'shop'))}
 						>
 							Shop
 						</p>
 						<p className={navCss}>More</p>
-						<p className={navCss}>Contact Us</p>
+						<p
+							ref={contactButtonRef}
+							className={cn(navCss, activeDropdown === 'contact' && 'after:w-full')}
+							onClick={() => setActiveDropdown((prev) => (prev === 'contact' ? null : 'contact'))}
+						>
+							Contact Us
+						</p>
 					</div>
 
 					<div className='flex items-center flex-gap-x-10'>
@@ -79,6 +75,7 @@ export const Header = () => {
 				</div>
 			</div>
 
+			{/* mobile sidebar menu */}
 			<Drawer isOpen={openDrawer} setIsOpen={setOpenDrawer}>
 				<div className='flex flex-col items-center flex-gap-y-8 md:hidden'>
 					<p className={navCss} onClick={() => navigate(ROUTES.home.path)}>
@@ -86,25 +83,74 @@ export const Header = () => {
 					</p>
 					<p
 						ref={shopButtonRef}
-						className={navCss}
-						onClick={() => setOpenDrawerSelection(!openDrawerSelection)}
+						className={cn(navCss, activeDropdown === 'shop' && 'after:w-full')}
+						onClick={() => setActiveDropdown((prev) => (prev === 'shop' ? null : 'shop'))}
 					>
 						Shop
 					</p>
-					{openDrawerSelection && (
-						<ShopSelection
-							dropdownRef={dropdownRef}
-							setOpenSelection={setOpenDrawerSelection}
-							onClick={() => setOpenDrawer(false)}
-						/>
+					{activeDropdown === 'shop' && (
+						<DropdownSelection dropdownRef={dropdownRef}>
+							{SHOP_DROPDOWN.map((item) => (
+								<DropdownItem
+									key={item.id}
+									title={item.title}
+									onClick={() => {
+										handleNavigate(item.navigate);
+									}}
+								/>
+							))}
+						</DropdownSelection>
 					)}
 					<p className={navCss}>More</p>
-					<p className={navCss}>Contact Us</p>
+					<p
+						ref={contactButtonRef}
+						className={cn(navCss, activeDropdown === 'contact' && 'after:w-full')}
+						onClick={() => setActiveDropdown((prev) => (prev === 'contact' ? null : 'contact'))}
+					>
+						Contact Us
+					</p>
+					{activeDropdown === 'contact' && (
+						<DropdownSelection dropdownRef={contactDropdownRef}>
+							{CONTACT_US_DROPDOWN.map((item) => (
+								<DropdownItem
+									key={item.id}
+									title={item.title}
+									onClick={() => {
+										handleNavigate(item.navigate);
+									}}
+								/>
+							))}
+						</DropdownSelection>
+					)}
 				</div>
 			</Drawer>
 
-			{openSelection && (
-				<ShopSelection dropdownRef={dropdownRef} setOpenSelection={setOpenSelection} />
+			{/* Dopdown for desktop size */}
+			{activeDropdown === 'shop' && !openDrawer && (
+				<DropdownSelection dropdownRef={dropdownRef}>
+					{SHOP_DROPDOWN.map((item) => (
+						<DropdownItem
+							key={item.id}
+							title={item.title}
+							onClick={() => {
+								handleNavigate(item.navigate);
+							}}
+						/>
+					))}
+				</DropdownSelection>
+			)}
+			{activeDropdown === 'contact' && !openDrawer && (
+				<DropdownSelection dropdownRef={dropdownRef}>
+					{CONTACT_US_DROPDOWN.map((item) => (
+						<DropdownItem
+							key={item.id}
+							title={item.title}
+							onClick={() => {
+								handleNavigate(item.navigate);
+							}}
+						/>
+					))}
+				</DropdownSelection>
 			)}
 		</>
 	);

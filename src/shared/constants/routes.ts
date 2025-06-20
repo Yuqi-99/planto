@@ -10,7 +10,19 @@ export const ROUTES: Record<TRouteKey, TRoute> = {
 	potsAccessories: {
 		path: '/pots-and-accessories',
 	},
-	contactUs: {
+	contact: {
 		path: '/contact-us',
+	},
+	aboutUs: {
+		path: '/about-us',
+	},
+	policies: {
+		path: '/policies',
+	},
+	shippingInfo: {
+		path: '/shipping-information',
+	},
+	sourcingStandards: {
+		path: '/sourcing-standards',
 	},
 };

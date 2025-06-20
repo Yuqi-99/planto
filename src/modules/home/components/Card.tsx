@@ -32,11 +32,15 @@ export const Card = ({
 		>
 			<div className='flex h-full flex-col'>
 				<div className='flex justify-center'>
-					<img src={img} alt={name} className={cn('-mt-20 lg:-mt-24', imgClassName)} />
+					<img
+						src={img}
+						alt={name}
+						className={cn('-mt-20 scale-75 sm:scale-100 lg:-mt-24', imgClassName)}
+					/>
 				</div>
-				<div className='mt-6 flex flex-col px-6'>
+				<div className='flex flex-col px-6 sm:mt-6'>
 					<p className='text-xs font-extralight text-grey-300'>{category}</p>
-					<p className='mt-3 line-clamp-1 text-xl font-light text-grey-300' title={name}>
+					<p className='mt-3 line-clamp-1 text-lg font-light text-grey-300 md:text-xl' title={name}>
 						{name}
 					</p>
 					{!showPrice && (
@@ -49,7 +53,7 @@ export const Card = ({
 					)}
 					{showPrice && (
 						<div className='flex w-full flex-row items-center justify-between'>
-							<p className='my-2 text-lg font-light text-grey-300'>RM {price}</p>
+							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>RM {price}</p>
 							<button
 								type='button'
 								className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white hover:bg-grey-600'

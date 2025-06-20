@@ -3,8 +3,8 @@ import PlayIcon from '../../../shared/assets/play-icon.svg?react';
 export const HomeTextSection = () => {
 	return (
 		<div className='w-full px-6 pt-8 md:w-3/5'>
-			<p className='text-6xl font-semibold text-grey-300'>Breath Natural</p>
-			<p className='pt-1 text-sm text-grey-300'>
+			<p className='text-4xl font-semibold text-grey-300 md:text-6xl'>Breath Natural</p>
+			<p className='pt-1 text-xs text-grey-300 md:text-sm'>
 				Discover your perfect green companion! Like Home Depot and Lowe's, we offer carefully
 				selected indoor plants, but with personalized care guidance. Our plants don't just beautify
 				your space - they create a living, breathing sanctuary that purifies your air and lifts your

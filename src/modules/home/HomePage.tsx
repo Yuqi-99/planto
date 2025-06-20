@@ -16,7 +16,7 @@ export const HomePage = () => {
 					<CardSwiper />
 					<ReviewSection />
 					<div className='my-20 flex items-center justify-center'>
-						<p className='text-3xl font-medium text-white'>Our Trendy Plants</p>
+						<p className='text-2xl font-medium text-white md:text-3xl'>Our Trendy Plants</p>
 					</div>
 					<LongCard
 						direction='left'

@@ -1,0 +1,51 @@
+export const SHIPPING_DATA = [
+	{
+		id: 1,
+		image: '/shippingInfo/shipping-info.png',
+		title: '📦 Delivery',
+		desc: 'We currently deliver within Malaysia only — including Peninsular Malaysia and East Malaysia (Sabah & Sarawak). We do not offer international shipping at this time.',
+		left: true,
+	},
+	{
+		id: 2,
+		image: '/shippingInfo/shipping-info-time.png',
+		title: '🕒 Order Processing Time',
+		desc: 'All orders are processed within 1–2 business days. Orders placed on weekends or public holidays will be processed the next working day. We aim to get your plants out as quickly and safely as possible.',
+		left: false,
+	},
+	{
+		id: 3,
+		image: '/shippingInfo/shipping-info-delivery.png',
+		title: '✈️ Delivery Time',
+		desc: 'Estimated 2–5 working days, while East Malaysia will estimated 5–8 working days. Delivery timelines may vary during peak seasons, public holidays, or due to weather conditions. We’ll keep you informed if any delays occur.',
+		left: true,
+	},
+	{
+		id: 4,
+		image: '/shippingInfo/shipping-info-1.png',
+		title: '🌿 Delivery Schedule',
+		desc: 'To ensure your plants don’t sit in courier warehouses over the weekend (which can harm them), we typically ship from Monday to Thursday. Orders placed near the end of the week may be scheduled to ship the following Monday.',
+		left: false,
+	},
+	{
+		id: 5,
+		image: '/shippingInfo/shipping-info-2.png',
+		title: '📦 Shipping Fees',
+		desc: 'We offer flat-rate shipping across Malaysia: RM8 for orders within Peninsular Malaysia, RM15 for orders to East Malaysia, Free shipping for orders over RM100 (Fees may vary slightly depending on plant size or bulk orders.)',
+		left: true,
+	},
+	{
+		id: 6,
+		image: '/shippingInfo/shipping-info-3.png',
+		title: '🚫 Delivery Restrictions',
+		desc: 'We currently do not deliver to PO Boxes, military addresses, or remote locations not covered by our courier partners. If unsure, please contact us to confirm.',
+		left: false,
+	},
+	{
+		id: 7,
+		image: '/shippingInfo/shipping-info-track.png',
+		title: '🧾 Tracking Your Order',
+		desc: 'Once your order is shipped, you will receive a tracking link via email or WhatsApp to monitor its journey to your doorstep.',
+		left: true,
+	},
+];

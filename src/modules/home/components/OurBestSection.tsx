@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { OUR_BEST_PLANT_DATA } from '../../../shared/constants/plantData';
 import { LongCard } from './LongCard';
 import { SectionTitle } from './SectionTitle';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import { OUR_BEST_PLANT_DATA } from '../../../shared/constants/plantData';
 // import Swiper styles
 // import 'swiper/css';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -16,7 +16,7 @@ export const OurBestSection = () => {
 	const [emblaRef, emblaApi] = useEmblaCarousel();
 	const carouselId = 'embla-carousel';
 
-	console.log(emblaRef, 'emblaRef');
+	// console.log(emblaRef, 'emblaRef');
 
 	const updateSlidesVisibility = useCallback(() => {
 		if (!emblaApi) return '333';
@@ -73,11 +73,11 @@ export const OurBestSection = () => {
 					modules={[Navigation, Pagination, Autoplay]}
 					spaceBetween={8}
 					slidesPerView={1}
-					autoplay={{
-						delay: 4000,
-						disableOnInteraction: false,
-					}}
-					loop
+					// autoplay={{
+					// 	delay: 4000,
+					// 	disableOnInteraction: false,
+					// }}
+					// loop
 					className='relative h-full w-screen max-w-[1440px] rounded-t-lg'
 					pagination={{ clickable: true }}
 					slideVisibleClass='swiper-slide-visible'

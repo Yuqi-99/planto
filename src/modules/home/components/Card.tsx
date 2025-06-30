@@ -46,9 +46,9 @@ export const Card = ({
 					{!showPrice && (
 						<button
 							type='button'
-							className='mt-3 w-1/2 rounded-lg border border-solid border-grey-300 px-2 py-2 hover:bg-grey-600 hover:text-white'
+							className='mt-3 w-1/2 rounded-lg border border-solid border-grey-300 px-2 py-2 text-grey-300 hover:border-green-300 hover:bg-grey-300 hover:text-grey-600'
 						>
-							<p className='text-sm font-light text-grey-300'>Buy Now</p>
+							<p className='text-sm font-light'>Buy Now</p>
 						</button>
 					)}
 					{showPrice && (
@@ -56,7 +56,7 @@ export const Card = ({
 							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>RM {price}</p>
 							<button
 								type='button'
-								className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white hover:bg-grey-600'
+								className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white'
 							>
 								<CartIcon className='size-5' />
 							</button>

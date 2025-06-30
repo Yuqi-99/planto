@@ -59,7 +59,7 @@ export const ContactUs = () => {
 					</p>
 
 					<form
-						className='mt-6 flex flex-col items-center rounded-lg bg-green-400 p-4 md:p-10'
+						className='mt-6 flex flex-col items-center rounded-lg border border-solid border-grey-400 bg-green-400 bg-gradient-to-tl from-green-400 to-green-700 p-4 md:p-10'
 						onSubmit={contactForm.handleSubmit(onSubmit)}
 					>
 						<TextInput
@@ -111,7 +111,7 @@ export const ContactUs = () => {
 
 						<button
 							type='submit'
-							className='bg-grey-400 mt-8 w-full rounded-full py-3 text-white hover:bg-grey-300 hover:text-black'
+							className='mt-8 w-full rounded-full bg-grey-400 py-3 text-white hover:bg-grey-300 hover:text-black'
 						>
 							Submit
 						</button>

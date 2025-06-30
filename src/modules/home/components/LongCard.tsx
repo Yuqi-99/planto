@@ -69,14 +69,14 @@ export const LongCard = ({
 						<div className='flex'>
 							<button
 								type='button'
-								className='mt-3 w-fit rounded-lg border border-solid border-white px-4 py-2 text-white hover:bg-grey-600'
+								className='mt-3 w-fit rounded-lg border border-solid border-white px-4 py-2 text-white hover:border-green-300 hover:bg-grey-300 hover:text-grey-600'
 							>
-								<p className='text-sm font-light text-white'>{buttonTitle}</p>
+								<p className='text-sm font-light'>{buttonTitle}</p>
 							</button>
 							{showAddToCart && (
 								<button
 									type='button'
-									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-white px-2 py-2 text-white hover:bg-grey-600'
+									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-white px-2 py-2 text-white'
 								>
 									<CartIcon className='size-5' />
 								</button>

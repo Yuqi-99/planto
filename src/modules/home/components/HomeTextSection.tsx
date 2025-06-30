@@ -14,9 +14,9 @@ export const HomeTextSection = () => {
 			<div className='mt-4 flex flex-gap-x-4'>
 				<button
 					type='button'
-					className='rounded-lg border border-solid border-grey-300 px-8 py-2 hover:bg-grey-600 hover:text-white'
+					className='rounded-lg border border-solid border-grey-300 px-8 py-2 text-grey-300 hover:border-green-300 hover:bg-grey-300 hover:text-grey-600'
 				>
-					<p className='text-sm font-bold text-grey-300 sm:font-light'>Explore</p>
+					<p className='text-sm font-bold sm:font-light'>Explore</p>
 				</button>
 
 				<button type='button' className='flex items-center'>

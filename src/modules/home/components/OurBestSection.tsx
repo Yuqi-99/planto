@@ -16,13 +16,13 @@ export const OurBestSection = () => {
 	const [emblaRef, emblaApi] = useEmblaCarousel();
 	const carouselId = 'embla-carousel';
 
-	// console.log(emblaRef, 'emblaRef');
+	console.log(emblaRef, 'emblaRef');
 
 	const updateSlidesVisibility = useCallback(() => {
-		if (!emblaApi) return '333';
+		if (!emblaApi) return 'no embla APi';
 
 		const viewport = document.getElementById(carouselId);
-		if (!viewport) return 'aaa';
+		if (!viewport) return 'no viewport found';
 
 		const viewportRect = viewport.getBoundingClientRect();
 		const slideNodes = emblaApi.slideNodes();

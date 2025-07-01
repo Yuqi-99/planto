@@ -1,4 +1,5 @@
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
+import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
 import { cn } from '../../../shared/utils/cn';
 type LongCardProps = {
@@ -25,7 +26,7 @@ export const LongCard = ({
 	showBgColor = true,
 }: LongCardProps) => {
 	return (
-		<div className='mb-20 w-full px-6'>
+		<AnimatedContent className='mb-20 w-full px-6'>
 			<div
 				className={cn(
 					'w-full rounded-[72px] border-2 border-solid border-green-300 px-2 backdrop-blur-md',
@@ -99,6 +100,6 @@ export const LongCard = ({
 					</div>
 				</div>
 			</div>
-		</div>
+		</AnimatedContent>
 	);
 };

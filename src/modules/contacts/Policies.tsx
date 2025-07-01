@@ -1,3 +1,4 @@
+import { AnimatedContent } from '../../shared/components/AnimatedContent';
 import { POLICIES_DATA } from '../../shared/constants/policiesData';
 import { SectionTitle } from '../home/components/SectionTitle';
 
@@ -29,7 +30,11 @@ export const Policies = () => {
 					/>
 
 					{POLICIES_DATA?.slice(0, 5)?.map((card: TPoliciesCard) => {
-						return <PoliciesCard title={card.title} desc={card.desc} />;
+						return (
+							<AnimatedContent className='flex w-full items-center justify-center'>
+								<PoliciesCard title={card.title} desc={card.desc} />
+							</AnimatedContent>
+						);
 					})}
 
 					<img
@@ -39,7 +44,11 @@ export const Policies = () => {
 					/>
 
 					{POLICIES_DATA?.slice(5)?.map((card: TPoliciesCard) => {
-						return <PoliciesCard title={card.title} desc={card.desc} />;
+						return (
+							<AnimatedContent className='flex w-full items-center justify-center'>
+								<PoliciesCard title={card.title} desc={card.desc} />
+							</AnimatedContent>
+						);
 					})}
 				</div>
 			</div>

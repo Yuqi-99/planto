@@ -1,4 +1,5 @@
 import PlantoIcon from '../../../shared/assets/planto-logo.svg?react';
+import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { cn } from '../../../shared/utils/cn';
 import { Rating } from './Rating';
 
@@ -11,7 +12,7 @@ type TReviewCard = {
 
 export const ReviewCard = ({ img, name, comment, showBgColor = true }: TReviewCard) => {
 	return (
-		<div
+		<AnimatedContent
 			className={cn(
 				'w-full rounded-[36px] border-2 border-solid border-green-300 p-4 backdrop-blur-sm md:w-fit md:max-w-[400px] md:p-6',
 				showBgColor && 'bg-green-700'
@@ -30,6 +31,6 @@ export const ReviewCard = ({ img, name, comment, showBgColor = true }: TReviewCa
 				</div>
 			</div>
 			<p className='mt-3 line-clamp-2 text-xs text-grey-300 md:mt-6'>{comment}</p>
-		</div>
+		</AnimatedContent>
 	);
 };

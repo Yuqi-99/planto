@@ -1,4 +1,5 @@
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
+import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
 import { cn } from '../../../shared/utils/cn';
 
@@ -25,7 +26,7 @@ export const Card = ({
 }: TCard) => {
 	console.log(id, 'id');
 	return (
-		<div
+		<AnimatedContent
 			className={cn(
 				'h-fit w-[250px] rounded-[36px] border-2 border-solid border-green-300 p-2 backdrop-blur-md sm:w-[240px] lg:w-[320px] lg:p-6',
 				showBgColor && 'bg-green-700'
@@ -77,6 +78,6 @@ export const Card = ({
 					)}
 				</div>
 			</div>
-		</div>
+		</AnimatedContent>
 	);
 };

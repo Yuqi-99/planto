@@ -1,3 +1,4 @@
+import { AnimatedContent } from '../../shared/components/AnimatedContent';
 import { SHIPPING_DATA } from '../../shared/constants/shippingData';
 import { cn } from '../../shared/utils/cn';
 import { SectionTitle } from '../home/components/SectionTitle';
@@ -14,7 +15,7 @@ const ShippingCard = ({ image, title, desc, left = true }: TShippingCard) => {
 	return (
 		<div
 			className={cn(
-				'my-8 flex md:h-[300px] w-full items-start justify-center rounded-lg border-2 border-solid border-green-300 bg-green-400/60 text-start text-white backdrop-blur-md',
+				'my-8 flex w-full items-start justify-center rounded-lg border-2 border-solid border-green-300 bg-green-400/60 text-start text-white backdrop-blur-md md:h-[300px]',
 				!left && 'flex-row-reverse'
 			)}
 		>
@@ -52,14 +53,16 @@ export const ShippingInfo = () => {
 					<div className='px-8'>
 						{SHIPPING_DATA?.map((card: TShippingCard) => {
 							return (
-								<ShippingCard
-									key={card.id}
-									id={card.id}
-									image={card.image}
-									title={card.title}
-									desc={card.desc}
-									left={card?.left}
-								/>
+								<AnimatedContent className='flex w-full items-center justify-center'>
+									<ShippingCard
+										key={card.id}
+										id={card.id}
+										image={card.image}
+										title={card.title}
+										desc={card.desc}
+										left={card?.left}
+									/>
+								</AnimatedContent>
 							);
 						})}
 					</div>

@@ -70,7 +70,7 @@ export const LongCard = ({
 						<div className='flex'>
 							<button
 								type='button'
-								className='mt-3 w-fit rounded-lg border border-solid border-grey-300 text-grey-300'
+								className='mt-3 w-fit rounded-lg border border-solid border-grey-300 text-grey-300 active:scale-105'
 							>
 								<GlareHover
 									glareColor='#ffffff'
@@ -90,7 +90,7 @@ export const LongCard = ({
 							{showAddToCart && (
 								<button
 									type='button'
-									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-grey-300 px-2 py-2 text-white'
+									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-grey-300 px-2 py-2 text-white active:scale-105'
 								>
 									<CartIcon className='size-5' />
 								</button>

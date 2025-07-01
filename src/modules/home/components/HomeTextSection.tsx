@@ -18,7 +18,7 @@ export const HomeTextSection = () => {
 			<div className='mt-4 flex flex-gap-x-4'>
 				<button
 					type='button'
-					className='rounded-lg border border-solid border-grey-300 px-8 py-2 text-grey-300'
+					className='rounded-lg border border-solid border-grey-300 px-8 py-2 text-grey-300 active:scale-110'
 					onClick={() => navigate(ROUTES.allPlants.path)}
 				>
 					<GradientText animationSpeed={10} showBorder={false}>

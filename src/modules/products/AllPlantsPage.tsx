@@ -9,7 +9,7 @@ export const AllPlantsPage = () => {
 				<Breadcrumb subpath='All Plants' />
 			</div>
 			<div className='my-20'>
-				<div className='flex flex-wrap items-center justify-center flex-gap-x-6 flex-gap-y-16'>
+				<div className='flex flex-wrap items-center justify-center gap-6 flex-gap-y-16'>
 					{PRODUCTS_PLANT_DATA?.map((card: TCard) => {
 						return (
 							<Card

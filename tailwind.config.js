@@ -39,6 +39,9 @@ export default {
 			},
 			zIndex: {
 				menuSelection: 1000,
+				modal: 3000,
+				'modal-overlay': 3001,
+				'modal-content': 3002,
 			},
 			keyframes: {
 				shine: {

@@ -47,7 +47,7 @@ export const Card = ({
 					{!showPrice && (
 						<button
 							type='button'
-							className='mt-3 w-1/2 rounded-lg border border-solid border-grey-300 text-grey-300'
+							className='mt-3 w-1/2 rounded-lg border border-solid border-grey-300 text-grey-300 active:scale-105'
 						>
 							<GlareHover
 								glareColor='#ffffff'
@@ -69,7 +69,7 @@ export const Card = ({
 							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>RM {price}</p>
 							<button
 								type='button'
-								className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white'
+								className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white active:scale-105'
 							>
 								<CartIcon className='size-5' />
 							</button>

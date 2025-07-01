@@ -1,4 +1,5 @@
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
+import { GlareHover } from '../../../shared/components/GlareHover';
 import { cn } from '../../../shared/utils/cn';
 type LongCardProps = {
 	direction: 'left' | 'right';
@@ -69,14 +70,27 @@ export const LongCard = ({
 						<div className='flex'>
 							<button
 								type='button'
-								className='mt-3 w-fit rounded-lg border border-solid border-white px-4 py-2 text-white hover:border-green-300 hover:bg-grey-300 hover:text-grey-600'
+								className='mt-3 w-fit rounded-lg border border-solid border-grey-300 text-grey-300'
 							>
-								<p className='text-sm font-light'>{buttonTitle}</p>
+								<GlareHover
+									glareColor='#ffffff'
+									glareOpacity={0.3}
+									glareAngle={-30}
+									transitionDuration={800}
+									playOnce={false}
+									background='transparent'
+									width='100%'
+									height='100%'
+									className='px-4 py-2'
+								>
+									<p className='text-sm font-light'>{buttonTitle}</p>
+								</GlareHover>
+								{/* <p className='text-sm font-light'></p> */}
 							</button>
 							{showAddToCart && (
 								<button
 									type='button'
-									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-white px-2 py-2 text-white'
+									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-grey-300 px-2 py-2 text-white'
 								>
 									<CartIcon className='size-5' />
 								</button>

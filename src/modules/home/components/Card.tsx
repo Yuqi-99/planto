@@ -1,4 +1,5 @@
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
+import { GlareHover } from '../../../shared/components/GlareHover';
 import { cn } from '../../../shared/utils/cn';
 
 export type TCard = {
@@ -46,9 +47,21 @@ export const Card = ({
 					{!showPrice && (
 						<button
 							type='button'
-							className='mt-3 w-1/2 rounded-lg border border-solid border-grey-300 px-2 py-2 text-grey-300 hover:border-green-300 hover:bg-grey-300 hover:text-grey-600'
+							className='mt-3 w-1/2 rounded-lg border border-solid border-grey-300 text-grey-300'
 						>
-							<p className='text-sm font-light'>Buy Now</p>
+							<GlareHover
+								glareColor='#ffffff'
+								glareOpacity={0.3}
+								glareAngle={-30}
+								transitionDuration={800}
+								playOnce={false}
+								background='transparent'
+								width='100%'
+								height='100%'
+								className='px-2 py-2'
+							>
+								<p className='text-sm font-light'>Buy Now</p>
+							</GlareHover>
 						</button>
 					)}
 					{showPrice && (

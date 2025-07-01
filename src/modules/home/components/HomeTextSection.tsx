@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import PlayIcon from '../../../shared/assets/play-icon.svg?react';
+import { GradientText } from '../../../shared/components/GradientText';
+import { ROUTES } from '../../../shared/constants/routes';
 
 export const HomeTextSection = () => {
+	const navigate = useNavigate();
 	return (
 		<div className='w-full px-6 pt-8 md:w-3/5'>
 			<p className='text-4xl font-semibold text-grey-300 md:text-6xl'>Breath Natural</p>
@@ -14,9 +18,12 @@ export const HomeTextSection = () => {
 			<div className='mt-4 flex flex-gap-x-4'>
 				<button
 					type='button'
-					className='rounded-lg border border-solid border-grey-300 px-8 py-2 text-grey-300 hover:border-green-300 hover:bg-grey-300 hover:text-grey-600'
+					className='rounded-lg border border-solid border-grey-300 px-8 py-2 text-grey-300'
+					onClick={() => navigate(ROUTES.allPlants.path)}
 				>
-					<p className='text-sm font-bold sm:font-light'>Explore</p>
+					<GradientText animationSpeed={10} showBorder={false}>
+						Explore
+					</GradientText>
 				</button>
 
 				<button type='button' className='flex items-center'>

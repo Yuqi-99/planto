@@ -19,51 +19,6 @@ export const PLANT_DATA = [
 	},
 ];
 
-export const TOP_SELLING_DATA = [
-	{
-		id: 1,
-		img: '../plant/calathea-plant.png',
-		category: 'Trendy House Plant',
-		name: 'Calathea plant',
-		price: 198,
-	},
-	{
-		id: 2,
-		img: '../plant/desk-plant.png',
-		category: 'Trendy House Plant',
-		name: 'Desk plant',
-		price: 269,
-	},
-	{
-		id: 3,
-		img: '../plant/calathea-ai-plant.png',
-		category: 'Trendy House Plant',
-		name: 'Calathea ai plant',
-		price: 278,
-	},
-	{
-		id: 4,
-		img: '../plant/cal-874-plant.png',
-		category: 'Trendy House Plant',
-		name: 'Cal 874 plant',
-		price: 278,
-	},
-	{
-		id: 5,
-		img: '../plant/show-plant.png',
-		category: 'Trendy House Plant',
-		name: 'Show plant',
-		price: 278,
-	},
-	{
-		id: 6,
-		img: '../plant/calat-02-plant.png',
-		category: 'Trendy House Plant',
-		name: 'Calat 02 plant',
-		price: 278,
-	},
-];
-
 export const OUR_BEST_PLANT_DATA = [
 	{
 		id: 1,

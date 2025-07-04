@@ -35,8 +35,6 @@ export const Footer = () => {
 		resolver: zodResolver(schema),
 	});
 
-	console.log(footerForm?.formState?.errors?.email, 'errors');
-
 	const onSubmit = (data: ValidationSchemaType) => {
 		console.log(data);
 		setOpenModal(true);
@@ -73,7 +71,7 @@ export const Footer = () => {
 									<>
 										<p
 											key={`${index}-${item.id}`}
-											className='text-xs font-normal text-white'
+											className='cursor-pointer text-xs font-normal text-white hover:scale-105'
 											onClick={() => navigate(item.navigate)}
 										>
 											{item.title}

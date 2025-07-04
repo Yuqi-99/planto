@@ -1,24 +1,36 @@
 import { useRef, useState } from 'react';
+import { IoIosCart } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import CartIcon from '../assets/cart-icon.svg?react';
 import MenuIcon from '../assets/menu-icon.svg?react';
 import PlantoLogo from '../assets/planto-logo.svg?react';
 import SearchIcon from '../assets/search-icon.svg?react';
 import { Drawer } from '../components/Drawer';
+import { CONTACT_US_DROPDOWN, SHOP_DROPDOWN } from '../constants/dropdownData';
 import { ROUTES } from '../constants/routes';
 import { useClickOutside } from '../hook/useClickOutside';
+import { useCartStore, type TcartItem } from '../stores/useCartStore';
 import { cn } from '../utils/cn';
-import { DropdownSelection } from './components/DropdownSelection';
+import { CartItem } from './components/CartItem';
 import { DropdownItem } from './components/DropdownItem';
-import { CONTACT_US_DROPDOWN, SHOP_DROPDOWN } from '../constants/dropdownData';
+import { DropdownSelection } from './components/DropdownSelection';
+import { Modal } from '../components/Modal';
+import { GlareHover } from '../components/GlareHover';
+
 export const Header = () => {
 	const navigate = useNavigate();
+	const { cart, removeFromCart } = useCartStore();
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const shopButtonRef = useRef<HTMLDivElement>(null);
 	const contactDropdownRef = useRef<HTMLDivElement>(null);
 	const contactButtonRef = useRef<HTMLDivElement>(null);
 	const [openDrawer, setOpenDrawer] = useState(false);
+	const [openCart, setOpenCart] = useState(false);
+	const [removeCartModal, setRemoveCartModal] = useState(false);
+	const [selectedItem, setSelectedItem] = useState<TcartItem>();
 	const [activeDropdown, setActiveDropdown] = useState<null | 'shop' | 'contact'>(null);
+	const cartQuantity = cart?.map((item) => item.quantity).reduce((a, b) => a + b, 0);
+	const cartPrice = cart?.map((item) => item.price).reduce((a, b) => a + b, 0);
 
 	const navCss =
 		'relative inline-block py-2 text-base md:text-sm font-extralight text-white after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer';
@@ -33,7 +45,7 @@ export const Header = () => {
 
 	return (
 		<>
-			<div className='flex w-full items-center justify-center bg-headerBgColor px-8 py-6'>
+			<div className='sticky top-0 z-menuSelection flex w-full items-center justify-center bg-headerBgColor px-8 py-4'>
 				<div className='flex w-full max-w-[1440px] items-center justify-between'>
 					<div
 						className='flex cursor-pointer items-center flex-gap-x-2'
@@ -66,7 +78,21 @@ export const Header = () => {
 
 					<div className='flex items-center flex-gap-x-10'>
 						<SearchIcon className='size-6 cursor-pointer' />
-						<CartIcon className='size-6 cursor-pointer' />
+						<div className='relative bg-transparent' onClickCapture={() => setOpenCart(true)}>
+							<CartIcon className='size-6 cursor-pointer' />
+							{cartQuantity > 0 && (
+								<div
+									className={cn(
+										'absolute right-[-10px] top-[-10px] flex h-5 w-5 items-center justify-center rounded-full border border-solid border-grey-300 bg-green-300',
+										cartQuantity > 99 && 'h-6 w-6'
+									)}
+								>
+									<p className='text-[10px] font-medium text-white'>
+										{cartQuantity > 99 ? '99+' : cartQuantity}
+									</p>
+								</div>
+							)}
+						</div>
 						<MenuIcon
 							className='flex size-6 cursor-pointer md:hidden'
 							onClickCapture={() => setOpenDrawer(true)}
@@ -151,6 +177,69 @@ export const Header = () => {
 						/>
 					))}
 				</DropdownSelection>
+			)}
+
+			{/* cart drawer */}
+			<Drawer isOpen={openCart} setIsOpen={setOpenCart} className='w-80 border-l border-green-300'>
+				<div className='flex flex-col items-center'>
+					<p className='text-bold mb-10 w-full text-left text-xl text-grey-300'>Shopping Cart</p>
+					{cart?.length === 0 && (
+						<div className='flex flex-col items-center'>
+							<IoIosCart className='mb-2 size-10 text-grey-300' />
+							<p className='text-bold text-grey-300'>No item found</p>
+						</div>
+					)}
+					{cart?.length > 0 &&
+						cart?.map((item) => {
+							return (
+								<CartItem
+									key={item.name}
+									item={item}
+									setRemoveCartModal={setRemoveCartModal}
+									setSelectedItem={setSelectedItem}
+								/>
+							);
+						})}
+					<button
+						type='button'
+						className='mb-8 mt-4 w-full rounded-lg border border-solid border-grey-300 text-grey-300 active:scale-105'
+						onClick={() => {
+							console.log('checkout');
+						}}
+					>
+						<GlareHover
+							glareColor='#ffffff'
+							glareOpacity={0.3}
+							glareAngle={-30}
+							transitionDuration={800}
+							playOnce={false}
+							background='transparent'
+							width='100%'
+							height='100%'
+							className='px-2 py-2'
+						>
+							<p className='text-sm font-light'>Checkout: RM {cartPrice}</p>
+						</GlareHover>
+					</button>
+				</div>
+			</Drawer>
+
+			{removeCartModal && (
+				<Modal
+					title='Remove Item'
+					msg='Are you sure you want to remove this item from your cart?'
+					buttonTitle='Close'
+					confirmButtonTitle='Remove'
+					onClose={() => {
+						setRemoveCartModal(false);
+					}}
+					onConfirm={() => {
+						if (selectedItem?.name) {
+							removeFromCart(selectedItem.name);
+						}
+						setRemoveCartModal(false);
+					}}
+				/>
 			)}
 		</>
 	);

@@ -3,18 +3,19 @@ import PlantoLogo from '../assets/planto-logo.svg?react';
 import { IoMdClose } from 'react-icons/io';
 
 type TDrawer = {
+	className?: string;
 	isOpen: boolean;
 	setIsOpen: (isOpen: boolean) => void;
 	children?: React.ReactNode;
 };
 
-export const Drawer = ({ isOpen, setIsOpen, children }: TDrawer) => {
+export const Drawer = ({ className, isOpen, setIsOpen, children }: TDrawer) => {
 	return (
 		<>
 			{/* Overlay (optional for background dim) */}
 			{isOpen && (
 				<div
-					className='fixed inset-0 z-30 bg-black bg-opacity-30'
+					className='fixed inset-0 z-modal-overlay bg-black bg-opacity-30'
 					onClick={() => setIsOpen(false)}
 				/>
 			)}
@@ -22,8 +23,9 @@ export const Drawer = ({ isOpen, setIsOpen, children }: TDrawer) => {
 			{/* Drawer */}
 			<div
 				className={cn(
-					'fixed right-0 top-0 z-40 h-screen w-64 transform overflow-y-auto bg-mainBgColor p-4 transition-transform',
-					isOpen ? 'translate-x-0' : 'translate-x-full'
+					'fixed right-0 top-0 z-modal-content h-screen w-64 transform overflow-y-auto bg-mainBgColor p-4 transition-transform',
+					isOpen ? 'translate-x-0' : 'translate-x-full',
+					className
 				)}
 				aria-labelledby='drawer-right-label'
 				role='dialog'

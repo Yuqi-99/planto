@@ -1,7 +1,9 @@
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
 import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
+import { useCartItem } from '../../../shared/hook/useCartItem';
 import { cn } from '../../../shared/utils/cn';
+import { CartQuatityButton } from './CartQuatityButton';
 
 export type TCard = {
 	category: string;
@@ -20,11 +22,17 @@ export const Card = ({
 	img,
 	name,
 	showPrice = false,
-	price,
+	price = 0,
 	imgClassName,
 	showBgColor = true,
 }: TCard) => {
 	console.log(id, 'id');
+	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
+		name,
+		price,
+		img,
+	});
+
 	return (
 		<AnimatedContent
 			className={cn(
@@ -68,12 +76,33 @@ export const Card = ({
 					{showPrice && (
 						<div className='flex w-full flex-row items-center justify-between'>
 							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>RM {price}</p>
-							<button
-								type='button'
-								className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white active:scale-105'
-							>
-								<CartIcon className='size-5' />
-							</button>
+							{click ? (
+								<CartQuatityButton
+									className='flex w-fit cursor-pointer items-center justify-between rounded-lg border border-solid border-grey-300 p-1.5 text-white'
+									cartRef={cartRef}
+									quantity={quantity}
+									onBlur={() => setClick(false)}
+									onAddClick={() => setQuantity(quantity + 1)}
+									onMinusClick={() => {
+										if (quantity > 0) {
+											setQuantity(quantity - 1);
+										}
+									}}
+								/>
+							) : (
+								<button
+									type='button'
+									className='w-fit rounded-lg border border-solid border-grey-300 p-1.5 text-white active:scale-105'
+									onClick={() => {
+										setClick(true);
+										if (quantity === 0 || existingItem === undefined) {
+											setQuantity(1);
+										}
+									}}
+								>
+									<CartIcon className='size-5' />
+								</button>
+							)}
 						</div>
 					)}
 				</div>

@@ -35,8 +35,6 @@ export const OurBestSection = () => {
 				slideRect.left >= viewportRect.left - tolerance &&
 				slideRect.right <= viewportRect.right + tolerance;
 
-			console.log(isVisible, 'isVisible');
-
 			slide.classList.toggle('opacity-0', !isVisible);
 			slide.classList.toggle('opacity-100', isVisible);
 			slide.classList.toggle('pointer-events-none', !isVisible);
@@ -48,7 +46,6 @@ export const OurBestSection = () => {
 
 		const timer = setTimeout(() => {
 			updateSlidesVisibility();
-			console.log('updateSlidesVisibility');
 		}, 50);
 
 		emblaApi.on('scroll', updateSlidesVisibility);
@@ -73,11 +70,11 @@ export const OurBestSection = () => {
 					modules={[Navigation, Pagination, Autoplay]}
 					spaceBetween={8}
 					slidesPerView={1}
-					autoplay={{
-						delay: 4000,
-						disableOnInteraction: false,
-					}}
-					loop
+					// autoplay={{
+					// 	delay: 4000,
+					// 	disableOnInteraction: false,
+					// }}
+					// loop
 					className='relative h-full w-screen max-w-[1440px] rounded-t-lg'
 					pagination={{ clickable: true }}
 					slideVisibleClass='swiper-slide-visible'

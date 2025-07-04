@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
 import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
+import { useCartItem } from '../../../shared/hook/useCartItem';
 import { cn } from '../../../shared/utils/cn';
+import { CartQuatityButton } from './CartQuatityButton';
 type LongCardProps = {
 	direction: 'left' | 'right';
 	img: string;
@@ -25,6 +28,15 @@ export const LongCard = ({
 	showAddToCart = true,
 	showBgColor = true,
 }: LongCardProps) => {
+	// const { cart } = useCartStore();
+	// const cartQuantity = cart?.find((item) => item.name === name)?.quantity;
+	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
+		name,
+		price: price || 0,
+		img,
+		// quantity: cartQuantity,
+	});
+
 	return (
 		<AnimatedContent className='mb-20 w-full px-6'>
 			<div
@@ -88,10 +100,30 @@ export const LongCard = ({
 								</GlareHover>
 								{/* <p className='text-sm font-light'></p> */}
 							</button>
-							{showAddToCart && (
+							{showAddToCart && click && (
+								<CartQuatityButton
+									className='ml-3 mt-3 flex w-fit cursor-pointer items-center justify-between rounded-lg border border-solid border-grey-300 px-2 py-2 text-white'
+									cartRef={cartRef}
+									quantity={quantity}
+									onBlur={() => setClick(false)}
+									onAddClick={() => setQuantity(quantity + 1)}
+									onMinusClick={() => {
+										if (quantity > 0) {
+											setQuantity(quantity - 1);
+										}
+									}}
+								/>
+							)}
+							{showAddToCart && !click && (
 								<button
 									type='button'
 									className='ml-3 mt-3 w-fit rounded-lg border border-solid border-grey-300 px-2 py-2 text-white active:scale-105'
+									onClick={() => {
+										setClick(true);
+										if (quantity === 0 || existingItem === undefined) {
+											setQuantity(1);
+										}
+									}}
 								>
 									<CartIcon className='size-5' />
 								</button>

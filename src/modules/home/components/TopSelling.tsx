@@ -1,4 +1,4 @@
-import { TOP_SELLING_DATA } from '../../../shared/constants/plantData';
+import { PRODUCTS_PLANT_DATA } from '../../../shared/constants/productsData';
 import { Card, type TCard } from './Card';
 import { SectionTitle } from './SectionTitle';
 
@@ -8,7 +8,7 @@ export const TopSelling = () => {
 			<SectionTitle title='Our Top Selling' />
 
 			<div className='mt-20 grid gap-x-4 gap-y-20 sm:grid-cols-2 md:grid-cols-3'>
-				{TOP_SELLING_DATA?.map((card: TCard) => {
+				{PRODUCTS_PLANT_DATA?.slice(0, 6)?.map((card: TCard) => {
 					return (
 						<Card
 							showPrice

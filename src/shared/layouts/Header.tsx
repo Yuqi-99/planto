@@ -33,20 +33,21 @@ export const Header = () => {
 	const cartPrice = cart?.map((item) => item.price).reduce((a, b) => a + b, 0);
 
 	const navCss =
-		'relative inline-block py-2 text-base md:text-sm font-extralight text-white after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer';
+		'relative inline-block py-2 md:py-4 text-base md:text-sm font-extralight text-white after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer md:relative md:h-full';
 	const handleNavigate = (path: string) => {
 		navigate(path);
 		setOpenDrawer(false);
 		setActiveDropdown(null);
 	};
+
 	useClickOutside([dropdownRef, shopButtonRef, contactDropdownRef, contactButtonRef], () => {
 		setActiveDropdown(null);
 	});
 
 	return (
 		<>
-			<div className='sticky top-0 z-menuSelection flex w-full items-center justify-center bg-headerBgColor px-8 py-4'>
-				<div className='flex w-full max-w-[1440px] items-center justify-between'>
+			<div className='sticky top-0 z-menuSelection flex w-full items-center justify-center bg-headerBgColor px-8 py-4 md:py-0'>
+				<div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
 					<div
 						className='flex cursor-pointer items-center flex-gap-x-2'
 						onClick={() => navigate(ROUTES.home.path)}
@@ -55,25 +56,63 @@ export const Header = () => {
 						<p className='text-lg font-bold text-white'>Planto.</p>
 					</div>
 
-					<div className='hidden h-10 items-center flex-gap-x-8 md:flex'>
+					<div className='hidden h-full items-center flex-gap-x-8 md:flex md:py-2'>
 						<p className={navCss} onClick={() => navigate(ROUTES.home.path)}>
 							Home
 						</p>
-						<p
-							ref={shopButtonRef}
-							className={cn(navCss, activeDropdown === 'shop' && 'after:w-full')}
-							onClick={() => setActiveDropdown((prev) => (prev === 'shop' ? null : 'shop'))}
+						<div
+							className='relative cursor-pointer'
+							onMouseEnter={() => setActiveDropdown('shop')}
+							onMouseLeave={() => setActiveDropdown(null)}
 						>
-							Shop
-						</p>
+							<p
+								ref={shopButtonRef}
+								className={cn(navCss, activeDropdown === 'shop' && 'after:w-full')}
+							>
+								Shop
+							</p>
+							{/* Dopdown for desktop size */}
+							{activeDropdown === 'shop' && !openDrawer && (
+								<DropdownSelection dropdownRef={dropdownRef}>
+									{SHOP_DROPDOWN.map((item) => (
+										<DropdownItem
+											key={item.id}
+											title={item.title}
+											onClick={() => {
+												handleNavigate(item.navigate);
+											}}
+										/>
+									))}
+								</DropdownSelection>
+							)}
+						</div>
 						<p className={navCss}>More</p>
-						<p
-							ref={contactButtonRef}
-							className={cn(navCss, activeDropdown === 'contact' && 'after:w-full')}
-							onClick={() => setActiveDropdown((prev) => (prev === 'contact' ? null : 'contact'))}
+						<div
+							className='relative cursor-pointer'
+							onMouseEnter={() => setActiveDropdown('contact')}
+							onMouseLeave={() => setActiveDropdown(null)}
 						>
-							Contact Us
-						</p>
+							<p
+								ref={contactButtonRef}
+								className={cn(navCss, activeDropdown === 'contact' && 'after:w-full')}
+							>
+								Contact Us
+							</p>
+							{/* Dopdown for desktop size */}
+							{activeDropdown === 'contact' && !openDrawer && (
+								<DropdownSelection dropdownRef={dropdownRef}>
+									{CONTACT_US_DROPDOWN.map((item) => (
+										<DropdownItem
+											key={item.id}
+											title={item.title}
+											onClick={() => {
+												handleNavigate(item.navigate);
+											}}
+										/>
+									))}
+								</DropdownSelection>
+							)}
+						</div>
 					</div>
 
 					<div className='flex items-center flex-gap-x-10'>
@@ -150,34 +189,6 @@ export const Header = () => {
 					)}
 				</div>
 			</Drawer>
-
-			{/* Dopdown for desktop size */}
-			{activeDropdown === 'shop' && !openDrawer && (
-				<DropdownSelection dropdownRef={dropdownRef}>
-					{SHOP_DROPDOWN.map((item) => (
-						<DropdownItem
-							key={item.id}
-							title={item.title}
-							onClick={() => {
-								handleNavigate(item.navigate);
-							}}
-						/>
-					))}
-				</DropdownSelection>
-			)}
-			{activeDropdown === 'contact' && !openDrawer && (
-				<DropdownSelection dropdownRef={dropdownRef}>
-					{CONTACT_US_DROPDOWN.map((item) => (
-						<DropdownItem
-							key={item.id}
-							title={item.title}
-							onClick={() => {
-								handleNavigate(item.navigate);
-							}}
-						/>
-					))}
-				</DropdownSelection>
-			)}
 
 			{/* cart drawer */}
 			<Drawer isOpen={openCart} setIsOpen={setOpenCart} className='w-80 border-l border-green-300'>

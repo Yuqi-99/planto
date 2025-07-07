@@ -38,7 +38,7 @@ export default {
 				lg: '1025px',
 			},
 			zIndex: {
-				menuSelection: 1000,
+				menuSelection: 3000,
 				modal: 3000,
 				'modal-overlay': 3001,
 				'modal-content': 3002,

@@ -6,6 +6,7 @@ import { useCartItem } from '../../../shared/hook/useCartItem';
 import { useCartStore } from '../../../shared/stores/useCartStore';
 import { cn } from '../../../shared/utils/cn';
 import { CartQuatityButton } from './CartQuatityButton';
+import { formatAmount } from '../../../shared/utils/formatAmount';
 
 export type TCard = {
 	category: string;
@@ -85,7 +86,9 @@ export const Card = ({
 					)}
 					{showPrice && (
 						<div className='flex w-full flex-row items-center justify-between'>
-							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>RM {price}</p>
+							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>
+								RM {formatAmount(price)}
+							</p>
 							{click ? (
 								<CartQuatityButton
 									className='flex w-fit cursor-pointer items-center justify-between rounded-lg border border-solid border-grey-300 p-1.5 text-white'

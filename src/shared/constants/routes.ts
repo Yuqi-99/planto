@@ -25,4 +25,7 @@ export const ROUTES: Record<TRouteKey, TRoute> = {
 	sourcingStandards: {
 		path: '/sourcing-standards',
 	},
+	checkout: {
+		path: '/checkout',
+	},
 };

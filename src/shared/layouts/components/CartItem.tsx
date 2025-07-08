@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { CartQuatityButton } from '../../../modules/home/components/CartQuatityButton';
 import { useCartItem } from '../../hook/useCartItem';
 import { type TcartItem } from '../../stores/useCartStore';
+import { formatAmount } from '../../utils/formatAmount';
 
 type TCartItemProps = {
 	item: TcartItem;
@@ -31,7 +32,7 @@ export const CartItem = ({ item, setRemoveCartModal, setSelectedItem }: TCartIte
 					<div className='ml-3 flex flex-col'>
 						<p className='text-medium'>{item.name}</p>
 						<p className='text-light text-xs'>Quantity: {item.quantity}</p>
-						<p className='text-bold'>RM {item.total}</p>
+						<p className='text-bold'>RM {formatAmount(item.total)}</p>
 					</div>
 				</div>
 				<CartQuatityButton

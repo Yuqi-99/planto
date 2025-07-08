@@ -7,6 +7,7 @@ export const RouteKey = [
 	'policies',
 	'shippingInfo',
 	'sourcingStandards',
+	'checkout',
 ] as const;
 export type TRouteKey = (typeof RouteKey)[number];
 

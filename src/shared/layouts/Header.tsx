@@ -16,6 +16,7 @@ import { DropdownItem } from './components/DropdownItem';
 import { DropdownSelection } from './components/DropdownSelection';
 import { Modal } from '../components/Modal';
 import { GlareHover } from '../components/GlareHover';
+import { formatAmount } from '../utils/formatAmount';
 
 export const Header = () => {
 	const navigate = useNavigate();
@@ -86,7 +87,6 @@ export const Header = () => {
 								</DropdownSelection>
 							)}
 						</div>
-						<p className={navCss}>More</p>
 						<div
 							className='relative cursor-pointer'
 							onMouseEnter={() => setActiveDropdown('contact')}
@@ -113,6 +113,7 @@ export const Header = () => {
 								</DropdownSelection>
 							)}
 						</div>
+						<p className={navCss}>Order</p>
 					</div>
 
 					<div className='flex items-center flex-gap-x-10'>
@@ -166,7 +167,6 @@ export const Header = () => {
 							))}
 						</DropdownSelection>
 					)}
-					<p className={navCss}>More</p>
 					<p
 						ref={contactButtonRef}
 						className={cn(navCss, activeDropdown === 'contact' && 'after:w-full')}
@@ -187,6 +187,7 @@ export const Header = () => {
 							))}
 						</DropdownSelection>
 					)}
+					<p className={navCss}>Order</p>
 				</div>
 			</Drawer>
 
@@ -229,7 +230,7 @@ export const Header = () => {
 							height='100%'
 							className='px-2 py-2'
 						>
-							<p className='text-sm font-light'>Checkout: RM {cartPrice}</p>
+							<p className='text-sm font-light'>Checkout: RM {formatAmount(cartPrice)}</p>
 						</GlareHover>
 					</button>
 				</div>

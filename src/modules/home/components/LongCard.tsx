@@ -6,6 +6,9 @@ import { useCartItem } from '../../../shared/hook/useCartItem';
 import { useCartStore } from '../../../shared/stores/useCartStore';
 import { cn } from '../../../shared/utils/cn';
 import { CartQuatityButton } from './CartQuatityButton';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../shared/constants/routes';
+import { formatAmount } from '../../../shared/utils/formatAmount';
 type LongCardProps = {
 	direction: 'left' | 'right';
 	img: string;
@@ -29,6 +32,7 @@ export const LongCard = ({
 	showAddToCart = true,
 	showBgColor = true,
 }: LongCardProps) => {
+	const navigate = useNavigate();
 	const { setShowToast, setToastContent } = useCartStore();
 	// const cartQuantity = cart?.find((item) => item.name === name)?.quantity;
 	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
@@ -64,7 +68,7 @@ export const LongCard = ({
 						alt={name}
 						className={cn(
 							showAddToCart
-								? '-mt-14 h-[200px] w-[200px] sm:-mt-14 sm:h-[280px] md:-mt-28 md:h-[350px]'
+								? '-mt-14 h-[200px] w-[200px] sm:-mt-14 sm:h-[280px] sm:w-[280px] md:-mt-28 md:h-[350px]'
 								: // : '-mt-20 h-[280px] sm:-mt-28 sm:h-[400px] lg:-mt-36 lg:h-[500px]'
 									'h-[280px] sm:h-[400px] lg:h-[500px]'
 						)}
@@ -86,12 +90,13 @@ export const LongCard = ({
 						>
 							{subtitle}
 						</p>
-						{price && <p className='my-2 text-xl text-white'>RM {price}</p>}
+						{price && <p className='my-2 text-xl text-white'>RM {formatAmount(price)}</p>}
 
 						<div className='flex'>
 							<button
 								type='button'
 								className='mt-3 w-fit rounded-lg border border-solid border-grey-300 text-grey-300 active:scale-105'
+								onClick={() => navigate(ROUTES.allPlants.path)}
 							>
 								<GlareHover
 									glareColor='#ffffff'

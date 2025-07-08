@@ -26,7 +26,7 @@ export const HomePage = () => {
 							category='For Small Desk Ai Plant'
 							subtitle='Ah, the Hosta - what a remarkable shade garden companion! I have seen these beauties transform the most challenging, shady spots into lush, textural wonderlands. Their rippling leaves come in the most incredible range of colors, from deep blue-green to bright chartreuse. What is really amazing is how they get more impressive each year, like a fine wine! Perfect for those looking to add some drama to their outdoor shade gardens.'
 							price={168}
-							buttonTitle='Buy Now'
+							buttonTitle='Explore'
 							showBgColor={false}
 						/>
 						<LongCard
@@ -36,7 +36,7 @@ export const HomePage = () => {
 							category='For Small Desk Ai Plant'
 							subtitle='Succulents in mint pots are simply irresistible! These little water-wise wonders are like living sculptures, each with their own unique personality. What I absolutely adore about them is their incredible resilience - they are practically indestructible! Perfect for busy plant parents or those who tend to forget watering schedules. Plus, they look absolutely stunning in modern minimalist settings.'
 							price={178}
-							buttonTitle='Buy Now'
+							buttonTitle='Explore'
 							showBgColor={false}
 						/>
 					</div>

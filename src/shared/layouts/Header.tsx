@@ -73,7 +73,7 @@ export const Header = () => {
 							</p>
 							{/* Dopdown for desktop size */}
 							{activeDropdown === 'shop' && !openDrawer && (
-								<DropdownSelection dropdownRef={dropdownRef}>
+								<DropdownSelection dropdownRef={contactDropdownRef}>
 									{SHOP_DROPDOWN.map((item) => (
 										<DropdownItem
 											key={item.id}

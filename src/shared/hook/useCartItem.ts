@@ -17,8 +17,6 @@ export const useCartItem = ({ name, price, img, from = '' }: UseCartItemProps) =
 	const { cart, setCart, removeFromCart } = useCartStore();
 	const existingItem = cart.find((item) => item.name === name);
 
-	console.log(from, 'from');
-
 	// Handle outside click to close dropdown
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -50,8 +48,6 @@ export const useCartItem = ({ name, price, img, from = '' }: UseCartItemProps) =
 			setQuantity(existingItem.quantity);
 		}
 	}, [existingItem]);
-
-	console.log(quantity, existingItem, 'quantity');
 
 	return {
 		cartRef,

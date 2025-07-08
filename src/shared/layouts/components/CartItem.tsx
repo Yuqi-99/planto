@@ -23,8 +23,6 @@ export const CartItem = ({ item, setRemoveCartModal, setSelectedItem }: TCartIte
 		}
 	}, [quantity, click]);
 
-	console.log(quantity, click, 'item');
-
 	return (
 		<>
 			<div className='mb-2 flex h-full w-full flex-row items-center justify-between rounded-lg bg-green-600 p-2 text-grey-300'>

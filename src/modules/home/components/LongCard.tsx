@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect } from 'react';
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
 import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
 import { useCartItem } from '../../../shared/hook/useCartItem';
+import { useCartStore } from '../../../shared/stores/useCartStore';
 import { cn } from '../../../shared/utils/cn';
 import { CartQuatityButton } from './CartQuatityButton';
 type LongCardProps = {
@@ -28,7 +29,7 @@ export const LongCard = ({
 	showAddToCart = true,
 	showBgColor = true,
 }: LongCardProps) => {
-	// const { cart } = useCartStore();
+	const { setShowToast, setToastContent } = useCartStore();
 	// const cartQuantity = cart?.find((item) => item.name === name)?.quantity;
 	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
 		name,
@@ -36,6 +37,13 @@ export const LongCard = ({
 		img,
 		// quantity: cartQuantity,
 	});
+
+	useEffect(() => {
+		if (click && quantity === 0) {
+			setShowToast(true);
+			setToastContent({ message: 'Item remove successfully to cart', add: false });
+		}
+	}, [quantity, click]);
 
 	return (
 		<AnimatedContent className='mb-20 w-full px-6'>
@@ -106,7 +114,13 @@ export const LongCard = ({
 									cartRef={cartRef}
 									quantity={quantity}
 									onBlur={() => setClick(false)}
-									onAddClick={() => setQuantity(quantity + 1)}
+									onAddClick={() => {
+										if (quantity === 0 || existingItem === undefined) {
+											setShowToast(true);
+											setToastContent({ message: 'Item added successfully to cart', add: true });
+										}
+										setQuantity(quantity + 1);
+									}}
 									onMinusClick={() => {
 										if (quantity > 0) {
 											setQuantity(quantity - 1);
@@ -123,6 +137,8 @@ export const LongCard = ({
 										if (quantity === 0 || existingItem === undefined) {
 											setQuantity(1);
 										}
+										setShowToast(true);
+										setToastContent({ message: 'Item added successfully to cart', add: true });
 									}}
 								>
 									<CartIcon className='size-5' />

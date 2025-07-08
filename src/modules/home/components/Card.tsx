@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
 import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
 import { useCartItem } from '../../../shared/hook/useCartItem';
+import { useCartStore } from '../../../shared/stores/useCartStore';
 import { cn } from '../../../shared/utils/cn';
 import { CartQuatityButton } from './CartQuatityButton';
 
@@ -27,11 +29,19 @@ export const Card = ({
 	showBgColor = true,
 }: TCard) => {
 	console.log(id, 'id');
+	const { setShowToast, setToastContent } = useCartStore();
 	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
 		name,
 		price,
 		img,
 	});
+
+	useEffect(() => {
+		if (click && quantity === 0) {
+			setShowToast(true);
+			setToastContent({ message: 'Item remove successfully to cart', add: false });
+		}
+	}, [quantity, click]);
 
 	return (
 		<AnimatedContent
@@ -82,7 +92,13 @@ export const Card = ({
 									cartRef={cartRef}
 									quantity={quantity}
 									onBlur={() => setClick(false)}
-									onAddClick={() => setQuantity(quantity + 1)}
+									onAddClick={() => {
+										if (quantity === 0 || existingItem === undefined) {
+											setShowToast(true);
+											setToastContent({ message: 'Item added successfully to cart', add: true });
+										}
+										setQuantity(quantity + 1);
+									}}
 									onMinusClick={() => {
 										if (quantity > 0) {
 											setQuantity(quantity - 1);
@@ -98,6 +114,8 @@ export const Card = ({
 										if (quantity === 0 || existingItem === undefined) {
 											setQuantity(1);
 										}
+										setShowToast(true);
+										setToastContent({ message: 'Item added successfully to cart', add: true });
 									}}
 								>
 									<CartIcon className='size-5' />

@@ -11,6 +11,13 @@ export type TcartItem = {
 };
 
 type CartState = {
+	toastContent: {
+		message: string;
+		add: boolean;
+	};
+	setToastContent: (toastContent: { message: string; add: boolean }) => void;
+	showToast: boolean;
+	setShowToast: (value: boolean) => void;
 	cart: TcartItem[];
 	setCart: (cart: TcartItem) => void;
 	removeFromCart: (name: string) => void;
@@ -23,8 +30,16 @@ const getInitialCart = (): TcartItem[] => {
 };
 
 export const useCartStore = create<CartState>((set) => ({
+	toastContent: {
+		message: '',
+		add: true,
+	},
+	setToastContent: (toastContent: { message: string; add: boolean }) => {
+		set({ toastContent });
+	},
+	showToast: false,
+	setShowToast: (value: boolean) => set({ showToast: value }),
 	cart: getInitialCart(),
-
 	setCart: (item: TcartItem) =>
 		set((prev) => {
 			const existingItem = prev.cart.find((cartItem) => cartItem.name === item.name);

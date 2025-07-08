@@ -19,7 +19,7 @@ import { GlareHover } from '../components/GlareHover';
 
 export const Header = () => {
 	const navigate = useNavigate();
-	const { cart, removeFromCart } = useCartStore();
+	const { cart, removeFromCart, setShowToast, setToastContent } = useCartStore();
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const shopButtonRef = useRef<HTMLDivElement>(null);
 	const contactDropdownRef = useRef<HTMLDivElement>(null);
@@ -248,6 +248,8 @@ export const Header = () => {
 						if (selectedItem?.name) {
 							removeFromCart(selectedItem.name);
 						}
+						setShowToast(true);
+						setToastContent({ message: 'Item remove successfully to cart', add: false });
 						setRemoveCartModal(false);
 					}}
 				/>

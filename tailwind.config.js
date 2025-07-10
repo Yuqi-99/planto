@@ -15,6 +15,7 @@ export default {
 				headerBgColor: '#192116',
 				footerBgColor: '#212C1C',
 				'yellow-200': '#FFD700',
+				'green-50': '#E8FFE9FF',
 				'green-100': '#BCFFBEFF',
 				'green-200': '#63A765',
 				'green-300': '#4D504CFF',

@@ -113,7 +113,9 @@ export const Header = () => {
 								</DropdownSelection>
 							)}
 						</div>
-						<p className={navCss}>Order</p>
+						<p className={navCss} onClick={() => navigate(ROUTES.orderHistory.path)}>
+							Order
+						</p>
 					</div>
 
 					<div className='flex items-center flex-gap-x-10'>
@@ -187,7 +189,9 @@ export const Header = () => {
 							))}
 						</DropdownSelection>
 					)}
-					<p className={navCss}>Order</p>
+					<p className={navCss} onClick={() => navigate(ROUTES.orderHistory.path)}>
+						Order
+					</p>
 				</div>
 			</Drawer>
 
@@ -216,7 +220,16 @@ export const Header = () => {
 						type='button'
 						className='mb-8 mt-4 w-full rounded-lg border border-solid border-grey-300 text-grey-300 active:scale-105'
 						onClick={() => {
-							console.log('checkout');
+							if (cartPrice > 0 && cart?.length > 0) {
+								navigate(ROUTES.checkout.path);
+								setOpenCart(false);
+							} else {
+								setShowToast(true);
+								setToastContent({
+									message: 'Oops! Your cart is empty. Add some plants before checking out.',
+									add: false,
+								});
+							}
 						}}
 					>
 						<GlareHover

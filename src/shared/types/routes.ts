@@ -8,6 +8,8 @@ export const RouteKey = [
 	'shippingInfo',
 	'sourcingStandards',
 	'checkout',
+	'paymentProcessing',
+	'orderHistory',
 ] as const;
 export type TRouteKey = (typeof RouteKey)[number];
 

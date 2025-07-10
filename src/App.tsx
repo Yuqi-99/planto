@@ -17,6 +17,9 @@ import { ContentLayout } from './shared/layouts/ContentLayout';
 import { ShippingInfo } from './modules/contacts/ShippingInfo';
 import { SourcingStandards } from './modules/contacts/SourcingStandards';
 import { ContactUs } from './modules/contacts/ContactUs';
+import { CheckoutPage } from './modules/checkout/CheckoutPage';
+import { PaymentProcessingPage } from './modules/checkout/PaymentProcessingPage';
+import { OrderHistory } from './modules/order/OrderHistory';
 
 const routes = createRoutesFromElements(
 	<Route errorElement={<NotFoundPage />}>
@@ -30,6 +33,9 @@ const routes = createRoutesFromElements(
 				<Route path={ROUTES.policies.path} element={<Policies />} />
 				<Route path={ROUTES.shippingInfo.path} element={<ShippingInfo />} />
 				<Route path={ROUTES.sourcingStandards.path} element={<SourcingStandards />} />
+				<Route path={ROUTES.checkout.path} element={<CheckoutPage />} />
+				<Route path={ROUTES.paymentProcessing.path} element={<PaymentProcessingPage />} />
+				<Route path={ROUTES.orderHistory.path} element={<OrderHistory />} />
 			</Route>
 		</Route>
 	</Route>

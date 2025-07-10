@@ -28,4 +28,10 @@ export const ROUTES: Record<TRouteKey, TRoute> = {
 	checkout: {
 		path: '/checkout',
 	},
+	paymentProcessing: {
+		path: '/paymentProcessing',
+	},
+	orderHistory: {
+		path: '/orderHistory',
+	},
 };

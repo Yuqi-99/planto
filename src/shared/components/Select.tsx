@@ -183,7 +183,7 @@ export const Select = <T extends FieldValues>({
 							'border-t': isExpanded,
 							'border-t-red-600': error,
 						},
-						isExpanded && 'overflow-y-scroll'
+						isExpanded && 'overflow-y-scroll border border-solid border-grey-300'
 					)}
 					style={{
 						maxHeight: isExpanded ? `${maxOptionAreaHeight}px` : '0px',

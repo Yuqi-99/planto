@@ -42,6 +42,8 @@ export const LongCard = ({
 		// quantity: cartQuantity,
 	});
 
+	const Wrapper = showBgColor ? AnimatedContent : 'div';
+
 	useEffect(() => {
 		if (click && quantity === 0) {
 			setShowToast(true);
@@ -50,7 +52,7 @@ export const LongCard = ({
 	}, [quantity, click]);
 
 	return (
-		<AnimatedContent className='mb-20 w-full px-6'>
+		<Wrapper className='mb-20 w-full px-6'>
 			<div
 				className={cn(
 					'w-full rounded-[72px] border-2 border-solid border-green-300 px-2 backdrop-blur-md',
@@ -153,6 +155,6 @@ export const LongCard = ({
 					</div>
 				</div>
 			</div>
-		</AnimatedContent>
+		</Wrapper>
 	);
 };

@@ -1,22 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { MdOutlineStorefront } from 'react-icons/md';
 import { TbTruckDelivery } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 import { GlareHover } from '../../shared/components/GlareHover';
 import { Stepper } from '../../shared/components/Stepper';
 import { DEVLIVERY_METHOD } from '../../shared/constants/checkoutData';
+import { ROUTES } from '../../shared/constants/routes';
 import { cn } from '../../shared/utils/cn';
 import { SectionTitle } from '../home/components/SectionTitle';
-import { DeliveryStepOne } from './DeliveryStepOne';
-import { DeliveryStepTwo } from './DeliveryStepTwo';
-import { deliverySchema, type TDeliverySchema } from './schemas';
-import { DeliveryStepThree } from './DeliveryStepThree';
 import { DeliveryStepFour } from './DeliveryStepFour';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../shared/constants/routes';
+import { DeliveryStepOne } from './DeliveryStepOne';
+import { DeliveryStepThree } from './DeliveryStepThree';
+import { DeliveryStepTwo } from './DeliveryStepTwo';
 import { PickupStepOne } from './PickupStepOne';
+import { deliverySchema, type TDeliverySchema } from './schemas';
 
 export const CheckoutPage = () => {
 	const navigate = useNavigate();

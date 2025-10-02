@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
 import { useCartStore } from '../stores/useCartStore';
-import { de } from 'zod/v4/locales';
 
 type useAddToCartAnimationProps = {
 	imgRef?: React.RefObject<HTMLImageElement | null>;

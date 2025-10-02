@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
 import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
-import { useCartItem } from '../../../shared/hook/useCartItem';
+import { handleAddToCart, useCartItem } from '../../../shared/hook/useCartItem';
 import { useCartStore } from '../../../shared/stores/useCartStore';
 import { cn } from '../../../shared/utils/cn';
 import { CartQuatityButton } from './CartQuatityButton';
@@ -30,6 +30,7 @@ export const Card = ({
 	showBgColor = true,
 }: TCard) => {
 	console.log(id, 'id');
+	const imgRef = useRef<HTMLImageElement>(null);
 	const { setShowToast, setToastContent } = useCartStore();
 	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
 		name,
@@ -40,7 +41,7 @@ export const Card = ({
 	useEffect(() => {
 		if (click && quantity === 0) {
 			setShowToast(true);
-			setToastContent({ message: 'Item remove successfully to cart', add: false });
+			setToastContent({ message: 'Item remove successfully from cart', add: false });
 		}
 	}, [quantity, click]);
 
@@ -54,6 +55,7 @@ export const Card = ({
 			<div className='flex h-full flex-col'>
 				<div className='flex justify-center'>
 					<img
+						ref={imgRef}
 						src={img}
 						alt={name}
 						className={cn('-mt-20 scale-75 sm:scale-100 lg:-mt-24', imgClassName)}
@@ -86,7 +88,7 @@ export const Card = ({
 					)}
 					{showPrice && (
 						<div className='flex w-full flex-row items-center justify-between'>
-							<p className='my-2 text-lg font-light text-grey-300 sm:text-lg'>
+							<p className='my-2 text-base font-light text-grey-300 lg:text-lg'>
 								RM {formatAmount(price)}
 							</p>
 							{click ? (
@@ -96,11 +98,12 @@ export const Card = ({
 									quantity={quantity}
 									onBlur={() => setClick(false)}
 									onAddClick={() => {
-										if (quantity === 0 || existingItem === undefined) {
-											setShowToast(true);
-											setToastContent({ message: 'Item added successfully to cart', add: true });
-										}
+										// if (quantity === 0 || existingItem === undefined) {
+										setShowToast(true);
+										setToastContent({ message: 'Item added successfully to cart', add: true });
+										// }
 										setQuantity(quantity + 1);
+										handleAddToCart({ imgRef });
 									}}
 									onMinusClick={() => {
 										if (quantity > 0) {
@@ -116,9 +119,10 @@ export const Card = ({
 										setClick(true);
 										if (quantity === 0 || existingItem === undefined) {
 											setQuantity(1);
+											setShowToast(true);
+											setToastContent({ message: 'Item added successfully to cart', add: true });
+											handleAddToCart({ imgRef });
 										}
-										setShowToast(true);
-										setToastContent({ message: 'Item added successfully to cart', add: true });
 									}}
 								>
 									<CartIcon className='size-5' />

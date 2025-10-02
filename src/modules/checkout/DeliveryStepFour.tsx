@@ -19,8 +19,6 @@ export const DeliveryStepFour = <T extends FieldValues>({
 	const cartPrice = cart?.map((item) => item.price).reduce((a, b) => a + b, 0);
 	const total = cartPrice + checkoutForm.watch('shippingFee' as Path<T>);
 
-	console.log(checkoutForm, 'checkoutForm');
-
 	return (
 		<div className='flex flex-col'>
 			<p className='mt-10 text-xl text-white'>Order Confrimation</p>

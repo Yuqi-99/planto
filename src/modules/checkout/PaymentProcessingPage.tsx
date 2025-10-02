@@ -18,7 +18,6 @@ export const PaymentProcessingPage = () => {
 	const { cart, resetCart } = useCartStore();
 	const [complete, setComplete] = useState(false);
 	const [trackingNumber, setTrackingNumber] = useState('');
-	console.log(orderData, 'orderData');
 	const cartPrice = cart?.map((item) => item.price).reduce((a, b) => a + b, 0);
 	const total = cartPrice + orderData.shippingFee;
 	const generateOrderId = () => {

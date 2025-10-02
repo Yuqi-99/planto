@@ -17,10 +17,11 @@ import { DropdownSelection } from './components/DropdownSelection';
 import { Modal } from '../components/Modal';
 import { GlareHover } from '../components/GlareHover';
 import { formatAmount } from '../utils/formatAmount';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 export const Header = () => {
 	const navigate = useNavigate();
-	const { cart, removeFromCart, setShowToast, setToastContent } = useCartStore();
+	const { cart, removeFromCart, setShowToast, setToastContent, resetCart } = useCartStore();
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const shopButtonRef = useRef<HTMLDivElement>(null);
 	const contactDropdownRef = useRef<HTMLDivElement>(null);
@@ -28,6 +29,7 @@ export const Header = () => {
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const [openCart, setOpenCart] = useState(false);
 	const [removeCartModal, setRemoveCartModal] = useState(false);
+	const [removeAll, setRemoveAll] = useState(false);
 	const [selectedItem, setSelectedItem] = useState<TcartItem>();
 	const [activeDropdown, setActiveDropdown] = useState<null | 'shop' | 'contact'>(null);
 	const cartQuantity = cart?.map((item) => item.quantity).reduce((a, b) => a + b, 0);
@@ -65,6 +67,7 @@ export const Header = () => {
 							className='relative cursor-pointer'
 							onMouseEnter={() => setActiveDropdown('shop')}
 							onMouseLeave={() => setActiveDropdown(null)}
+							onClick={() => setActiveDropdown('shop')}
 						>
 							<p
 								ref={shopButtonRef}
@@ -91,6 +94,7 @@ export const Header = () => {
 							className='relative cursor-pointer'
 							onMouseEnter={() => setActiveDropdown('contact')}
 							onMouseLeave={() => setActiveDropdown(null)}
+							onClick={() => setActiveDropdown('contact')}
 						>
 							<p
 								ref={contactButtonRef}
@@ -120,7 +124,11 @@ export const Header = () => {
 
 					<div className='flex items-center flex-gap-x-10'>
 						<SearchIcon className='size-6 cursor-pointer' />
-						<div className='relative bg-transparent' onClickCapture={() => setOpenCart(true)}>
+						<div
+							className='relative bg-transparent'
+							onClickCapture={() => setOpenCart(true)}
+							id='cart-icon'
+						>
 							<CartIcon className='size-6 cursor-pointer' />
 							{cartQuantity > 0 && (
 								<div
@@ -146,7 +154,12 @@ export const Header = () => {
 			{/* mobile sidebar menu */}
 			<Drawer isOpen={openDrawer} setIsOpen={setOpenDrawer}>
 				<div className='flex flex-col items-center flex-gap-y-8 md:hidden'>
-					<p className={navCss} onClick={() => navigate(ROUTES.home.path)}>
+					<p
+						className={navCss}
+						onClick={() => {
+							handleNavigate(ROUTES.home.path);
+						}}
+					>
 						Home
 					</p>
 					<p
@@ -189,7 +202,12 @@ export const Header = () => {
 							))}
 						</DropdownSelection>
 					)}
-					<p className={navCss} onClick={() => navigate(ROUTES.orderHistory.path)}>
+					<p
+						className={navCss}
+						onClick={() => {
+							handleNavigate(ROUTES.orderHistory.path);
+						}}
+					>
 						Order
 					</p>
 				</div>
@@ -198,7 +216,22 @@ export const Header = () => {
 			{/* cart drawer */}
 			<Drawer isOpen={openCart} setIsOpen={setOpenCart} className='w-80 border-l border-green-300'>
 				<div className='flex flex-col items-center'>
-					<p className='text-bold mb-10 w-full text-left text-xl text-grey-300'>Shopping Cart</p>
+					<div className='flex w-full flex-row justify-between'>
+						<p className='text-bold mb-10 w-full text-left text-xl text-grey-300'>Shopping Cart</p>
+
+						{cart?.length > 0 && (
+							<div
+								className='text-bold mb-10 flex w-full cursor-pointer flex-row items-center justify-end text-end text-sm text-red-300'
+								onClick={() => {
+									setRemoveCartModal(true);
+									setRemoveAll(true);
+								}}
+							>
+								<RiDeleteBin6Line className='mr-1 size-4' />
+								<p>Delete All</p>
+							</div>
+						)}
+					</div>
 					{cart?.length === 0 && (
 						<div className='flex flex-col items-center'>
 							<IoIosCart className='mb-2 size-10 text-grey-300' />
@@ -262,8 +295,14 @@ export const Header = () => {
 						if (selectedItem?.name) {
 							removeFromCart(selectedItem.name);
 						}
+						if (removeAll) {
+							localStorage.removeItem('cart');
+							resetCart();
+							setRemoveAll(false);
+							setToastContent({ message: 'All items remove successfully from cart', add: false });
+						}
 						setShowToast(true);
-						setToastContent({ message: 'Item remove successfully to cart', add: false });
+						setToastContent({ message: 'Item remove successfully from cart', add: false });
 						setRemoveCartModal(false);
 					}}
 				/>

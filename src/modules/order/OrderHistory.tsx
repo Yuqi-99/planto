@@ -10,8 +10,6 @@ import NoDataIcon from '../../shared/assets/no-data.svg?react';
 export const OrderHistory = () => {
 	const orderHistory: any = getObjectLocalStorage(STORAGE_KEYS.ORDER) || [];
 
-	console.log(orderHistory, 'orderHistory');
-
 	return (
 		<div className='my-10 min-h-[50dvh]'>
 			<div className='flex flex-col items-center justify-center px-6'>

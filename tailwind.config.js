@@ -30,7 +30,7 @@ export default {
 			backgroundImage: {
 				// 'topiary-green-pot':
 				// 	"url('https://breath-natural-nextjs-chronicles.netlify.app/_next/static/media/topiary-green-pot.3f6d856c.webp')",
-				'topiary-green-pot': "url('../background-plant.png')",
+				'topiary-green-pot': "url('../background-plant-new.png')",
 				'gradient-border': 'linear-gradient(to right, #3C433A, #FFFFFF)',
 			},
 			screens: {

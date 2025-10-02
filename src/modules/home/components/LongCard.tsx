@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import CartIcon from '../../../shared/assets/cart-icon.svg?react';
 import { AnimatedContent } from '../../../shared/components/AnimatedContent';
 import { GlareHover } from '../../../shared/components/GlareHover';
-import { useCartItem } from '../../../shared/hook/useCartItem';
+import { handleAddToCart, useCartItem } from '../../../shared/hook/useCartItem';
 import { useCartStore } from '../../../shared/stores/useCartStore';
 import { cn } from '../../../shared/utils/cn';
 import { CartQuatityButton } from './CartQuatityButton';
@@ -33,6 +33,7 @@ export const LongCard = ({
 	showBgColor = true,
 }: LongCardProps) => {
 	const navigate = useNavigate();
+	const imgRef = useRef<HTMLImageElement | null>(null);
 	const { setShowToast, setToastContent } = useCartStore();
 	// const cartQuantity = cart?.find((item) => item.name === name)?.quantity;
 	const { click, setClick, quantity, setQuantity, cartRef, existingItem } = useCartItem({
@@ -66,6 +67,7 @@ export const LongCard = ({
 					)}
 				>
 					<img
+						ref={imgRef}
 						src={img}
 						alt={name}
 						className={cn(
@@ -122,11 +124,12 @@ export const LongCard = ({
 									quantity={quantity}
 									onBlur={() => setClick(false)}
 									onAddClick={() => {
-										if (quantity === 0 || existingItem === undefined) {
-											setShowToast(true);
-											setToastContent({ message: 'Item added successfully to cart', add: true });
-										}
+										// if (quantity === 0 || existingItem === undefined) {
+										setShowToast(true);
+										setToastContent({ message: 'Item added successfully to cart', add: true });
+										// }
 										setQuantity(quantity + 1);
+										handleAddToCart({ imgRef });
 									}}
 									onMinusClick={() => {
 										if (quantity > 0) {
@@ -143,9 +146,10 @@ export const LongCard = ({
 										setClick(true);
 										if (quantity === 0 || existingItem === undefined) {
 											setQuantity(1);
+											setShowToast(true);
+											setToastContent({ message: 'Item added successfully to cart', add: true });
+											handleAddToCart({ imgRef });
 										}
-										setShowToast(true);
-										setToastContent({ message: 'Item added successfully to cart', add: true });
 									}}
 								>
 									<CartIcon className='size-5' />

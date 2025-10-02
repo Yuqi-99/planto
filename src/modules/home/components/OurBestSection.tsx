@@ -70,11 +70,11 @@ export const OurBestSection = () => {
 					modules={[Navigation, Pagination, Autoplay]}
 					spaceBetween={8}
 					slidesPerView={1}
-					// autoplay={{
-					// 	delay: 4000,
-					// 	disableOnInteraction: false,
-					// }}
-					// loop
+					autoplay={{
+						delay: 4000,
+						disableOnInteraction: false,
+					}}
+					loop
 					className='relative h-full w-screen max-w-[1440px] rounded-t-lg'
 					pagination={{ clickable: true }}
 					slideVisibleClass='swiper-slide-visible'
